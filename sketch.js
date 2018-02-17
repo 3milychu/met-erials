@@ -19,8 +19,6 @@ var goldData;
 
 function setup(){
 
-	var canvas = createCanvas(windowWidth/3, windowHeight);
-
 	getInfo();
 
 	};
