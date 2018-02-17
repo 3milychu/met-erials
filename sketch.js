@@ -6,13 +6,13 @@ var yearMax;
 var count;
 
 var total;
-var goldData;
-var silverData;
-var bronzeData;
-var leatherData;
-var steelData;
+var woodData;
+var silkData;
+var inkData;
 var glassData;
-var zincData;
+var steelData;
+var silverData;
+var goldData;
 
 
 //Sketch histogram
@@ -21,13 +21,13 @@ function setup(){
 
 	var canvas = createCanvas(windowWidth/3, windowHeight);
 
-	getHistogram();
+	getInfo();
 
 	};
 
-function getHistogram(){
+function getInfo(){
 
-d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/labs/analysis/selected_mediums_MetObjects.csv", function(data) {
+d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/labs/analysis/topMediums_final.csv", function(data) {
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
@@ -63,22 +63,48 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 				  	.entries(data)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-		   		// Data for "gold" selection
-			   goldData = data.filter(function(d) { 
-			    	return d.hasGold == 1
+		   		// Data for "wood" selection
+			   woodData = data.filter(function(d) { 
+			    	return d.hasWood == 1
 			    	});
 
-			   goldDataUse = d3.nest()
+			   woodDataUse = d3.nest()
 			   		.key(function(d) { return d.objectBeginDate; })
 				  	.rollup(function(v) { return v.length; })
-				  	.entries(goldData)
+				  	.entries(woodData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-			    // console.log(goldDataUse);
+			    // console.log(woodDataUse);
 
-			   // Data for "silver" selection
+			   // Data for "silk" selection
+			   silkData = data.filter(function(d) { 
+			    	return d.hasSilk == 1
+			    	});
+
+			   silkDataUse = d3.nest()
+			   		.key(function(d) { return d.objectBeginDate; })
+				  	.rollup(function(v) { return v.length; })
+				  	.entries(silkData)
+				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+
+			    // console.log(silkDataUse);
+
+			    // Data for "ink" selection
+			   inkData = data.filter(function(d) { 
+			    	return d.hasInk == 1
+			    	});
+
+			   inkDataUse = d3.nest()
+			   		.key(function(d) { return d.objectBeginDate; })
+				  	.rollup(function(v) { return v.length; })
+				  	.entries(inkData)
+				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+
+			    // console.log(inkDataUse);
+
+			     // Data for "silver" selection
 			   silverData = data.filter(function(d) { 
-			    	return d.hasSilver == 1
+			    	return d.hasSilver== 1
 			    	});
 
 			   silverDataUse = d3.nest()
@@ -87,24 +113,12 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 				  	.entries(silverData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-			    // console.log(silverDataUse);
+			    // console.log(inkDataUse);
 
-			    // Data for "bronze" selection
-			   bronzeData = data.filter(function(d) { 
-			    	return d.hasBronze == 1
-			    	});
-
-			   bronzeDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(bronzeData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-			    // console.log(bronzeDataUse);
 
 			     // Data for "glass" selection
 			   glassData = data.filter(function(d) { 
-			    	return d.hasGlass== 1
+			    	return d.hasGlass == 1
 			    	});
 
 			   glassDataUse = d3.nest()
@@ -113,21 +127,7 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 				  	.entries(glassData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-			    // console.log(bronzeDataUse);
-
-
-			     // Data for "leather" selection
-			   leatherData = data.filter(function(d) { 
-			    	return d.hasLeather == 1
-			    	});
-
-			   leatherDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(leatherData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-			    // console.log(bronzeDataUse);
+			    // console.log(inkDataUse);
 
 			     // Data for "steel" selection
 			   steelData = data.filter(function(d) { 
@@ -140,20 +140,20 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 				  	.entries(steelData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-			    // console.log(bronzeDataUse);
+			    // console.log(inkDataUse);
 
-			     // Data for "zinc" selection
-			   zincData = data.filter(function(d) { 
-			    	return d.hasZinc == 1
+			     // Data for "gold" selection
+			   goldData = data.filter(function(d) { 
+			    	return d.hasGold == 1
 			    	});
 
-			   zincDataUse = d3.nest()
+			   goldDataUse = d3.nest()
 			   		.key(function(d) { return d.objectBeginDate; })
 				  	.rollup(function(v) { return v.length; })
-				  	.entries(zincData)
+				  	.entries(goldData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-			    // console.log(bronzeDataUse);
+			    // console.log(inkDataUse);
 
 				change(total);
 
@@ -246,20 +246,20 @@ function origins(dataset) {
 
     var name;
 
-	if (dataset == goldData){
-		name = "Gold";
+	if (dataset == woodData){
+		name = "Wood";
+	} else if (dataset == silkData) {
+		name = "Silk";
+	} else if (dataset == inkData) {
+		name = "Ink";
 	} else if (dataset == silverData) {
 		name = "Silver";
-	} else if (dataset == bronzeData) {
-		name = "Bronze";
 	} else if (dataset == glassData) {
 		name = "Glass";
-	} else if (dataset == leatherData) {
-		name = "Leather";
 	} else if (dataset == steelData) {
 		name = "Steel";
-	} else if (dataset == zincData) {
-		name = "Zinc";
+	} else if (dataset == goldData) {
+		name = "Gold";
 	};
 
 	var format = d3.format(".0%");
@@ -395,11 +395,23 @@ function origins(dataset) {
 			            origins(data);
 			            gallery(data);
 			        }
-			        else if (value == "Gold")
+			        else if (value == "Wood")
 			        {
-			            change(goldDataUse);
-			            origins(goldData);
-			            gallery(goldData);
+			            change(woodDataUse);
+			            origins(woodData);
+			            gallery(woodData);
+			        }
+			        else if (value == "Silk")
+			        {
+			            change(silkDataUse);
+			            origins(silkData);
+			            gallery(silkData);
+			        }
+			        else if (value == "Ink")
+			        {
+			            change(inkDataUse);
+			            origins(inkData);
+			            gallery(inkData);
 			        }
 			        else if (value == "Silver")
 			        {
@@ -407,23 +419,11 @@ function origins(dataset) {
 			            origins(silverData);
 			            gallery(silverData);
 			        }
-			        else if (value == "Bronze")
-			        {
-			            change(bronzeDataUse);
-			            origins(bronzeData);
-			            gallery(bronzeData);
-			        }
 			        else if (value == "Glass")
 			        {
 			            change(glassDataUse);
 			            origins(glassData);
 			            gallery(glassData);
-			        }
-			        else if (value == "Leather")
-			        {
-			            change(leatherDataUse);
-			            origins(leatherData);
-			            gallery(leatherData);
 			        }
 			        else if (value == "Steel")
 			        {
@@ -431,11 +431,11 @@ function origins(dataset) {
 			            origins(steelData);
 			            gallery(steelData);
 			        }
-			        else if (value == "Zinc")
+			        else if (value == "Gold")
 			        {
-			            change(zincDataUse);
-			            origins(zincData);
-			            gallery(zincData);
+			            change(goldDataUse);
+			            origins(goldData);
+			            gallery(goldData);
 			        }
 			    }
 
