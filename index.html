@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>What Makes Art?</title>
+	<title>Met.erials</title>
 	<link href="https://fonts.googleapis.com/css?family=Yantramanav:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
 	<script type="text/javascript" src="libraries/p5.js"></script>
 	<script type="text/javascript" src="libraries/p5.dom.js"></script>
 	<script type="text/javascript" src="sketch.js"></script>
@@ -13,28 +14,81 @@
 
 	<!-- Title -->
 	<div id="title">
-		<img id="favicon" src="assets/favicon.jpg">
-		<h1 style="font-weight:300";>Met.erials</h1>
+
+		<!-- Name -->
+		<div class="name">
+			<img id="favicon" src="assets/favicon.jpg">
+			<h1 style="font-weight:300";>Met.erials</h1>
+		</div>
+
+
+		<!-- Selector -->
+		<div id="selector">
+			<form>
+				    <label onclick="showTile()">All<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="All"></label>
+				    <label onclick="showTile()">Wood<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Wood"></label>
+				    <label onclick="showTile()">Silk<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Silk"></label>
+				    <label onclick="showTile()">Ink<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Ink"></label>
+				    <label onclick="showTile()">Silver<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Silver"></label>
+				    <label onclick="showTile()">Glass<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Glass"></label>
+				    <label onclick="showTile()">Steel<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Steel"></label>
+				    <label onclick="showTile()">Gold<input class="radio-custom" type="checkbox" name="dataset" id="dataset" value="Gold"></label>
+			</form>
+		</div>
+
 	</div>
 
-	<!-- Histogram -->
-	<div id="histogram">
-		<svg></svg>
+
+<!-- Micro View -->
+<div class="content">
+
+	<!-- Representative Items -->
+	<div style="width:100%;margin-top:3%;"></div>
+
+	<div class="micro">
+		<div class="container">
+			<h1 class="section-header">Representative Items</h1>
+		</div>
+
+		<div class="container">
+
+			<!-- Representative Item #1 -->
+			<div class="rep" id="rep1">
+					<div class="image1" id="repImg1">
+<!-- 							<div class="overlay" id="overlay1">
+								<text id="objectTitle">Title</text>
+								<text id="objectBeginDate">Date</text>
+								<text id="objectName">Object Name:</text>
+								<text id="artistDisplayName">Artist:</text>
+								<text id="culture">Origins:</text>
+							</div> -->
+					</div>
+			</div>
+
+			<!-- Representative Item #2 -->
+			<div class="rep" id="rep2">
+					<div class="image2" id="repImg2">
+					</div>
+			</div>
+
+			<!-- Representative Item #3 -->
+			<div class="rep" id="rep3">
+					<div class="image3" id="repImg3">
+					</div>
+			</div>
+
+		</div>
+
 	</div>
-	
-	<!-- Selector -->
-	<div id="selector">
-		<form>
-			    <label onclick="showTile()">All<input class="radio-custom" type="radio" name="dataset" id="dataset" value="All" checked></label>
-			    <label onclick="showTile()">Wood<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Wood"></label>
-			    <label onclick="showTile()">Silk<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Silk"></label>
-			    <label onclick="showTile()">Ink<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Ink"></label>
-			    <label onclick="showTile()">Silver<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Silver"></label>
-			    <label onclick="showTile()">Glass<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Glass"></label>
-			    <label onclick="showTile()">Steel<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Steel"></label>
-			    <label onclick="showTile()">Gold<input class="radio-custom" type="radio" name="dataset" id="dataset" value="Gold"></label>
-		</form>
-	</div>
+
+
+
+<!-- Macro View -->
+		<div style="width:100%;margin-top:3%;"></div>
+
+		<div class="container">
+			<h1 class="section-header"># Items</h1>
+		</div>
 
 	<!-- Gallery -->
 	<div id="gallery">
@@ -49,18 +103,12 @@
 
 			<div class="images">
 				<div id="top1">
-					<div class="caption" id="dept1">
-					</div>
 				</div>
 
 				<div id="top2">
-					<div class="caption2" id="dept2">
-					</div>
 				</div>
 
 				<div id="top3">
-					<div class="caption3" id="dept3">
-					</div>
 				</div>
 			</div>
 
@@ -71,22 +119,27 @@
 				<br>
 				<div class="info3" id="dept2-percent"><text>6%</text></div>
 				<div class="info4" id="dept2-name"><text>Department 2</text></div>
+				<br>
+				<div class="info5" id="dept3-percent"><text>1%</text></div>
+				<div class="info6" id="dept3-name"><text>Department 3</text></div>
 			</div>
 
 		</div>
 	</div>
 
 	<!-- Origins -->
+
 	<div id ="origins">
 		<h1>Origins</h1>
 		<div class="culture" id="ranks"><text>Add mediums to view primary cultures of origin by rank</text></div>
 	</div>
 
+
+<!-- End Body -->
+</div>
 </body>
 
 <script>
-
-	// document.getElementById("goldDataUse").addEventListener("click", showTile);
 
 	function showTile() {
 	    document.getElementById("tile1").style.visibility = "visible";
@@ -95,11 +148,20 @@
 	    document.getElementById("tile0").style.visibility = "hidden";
 	}
 
-	// if(document.getElementById('total').checked) {
-	//   //If "all" is checked
-	// }else {
+	// Sticky Header
 
-	// }
+	window.onscroll = function() {myFunction()};
+
+	var header = document.getElementById("title");
+	var sticky = header.offsetTop;
+
+	function myFunction() {
+	  if (window.pageYOffset >= sticky) {
+	    header.classList.add("sticky");
+	  } else {
+	    header.classList.remove("sticky");
+	  }
+	}
 
 </script>
 

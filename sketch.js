@@ -6,6 +6,7 @@ var yearMax;
 var count;
 
 var total;
+var allData;
 var woodData;
 var silkData;
 var inkData;
@@ -14,10 +15,16 @@ var steelData;
 var silverData;
 var goldData;
 
+var objectNames;
+var repImg1;
+var repImg2;
+var repImg3;
 
 //Sketch histogram
 
 function setup(){
+
+	noCanvas();
 
 	getInfo();
 
@@ -60,6 +67,12 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 				  	.rollup(function(v) { return v.length; })
 				  	.entries(data)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+
+			// Data for "all" selection
+			   allData = data.filter(function(d) { 
+			    	return d.hasWood == 1 | d.hasSilk == 1 | d.hasInk == 1 | d.hasSilver ==1 | d.hasGlass == 1 | d.hasSteel == 1
+			    	| d.hasGold ==1
+			    	});
 
 		   		// Data for "wood" selection
 			   woodData = data.filter(function(d) { 
@@ -153,7 +166,7 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/la
 
 			    // console.log(inkDataUse);
 
-				change(total);
+				change(allData);
 
 // define change datasetTotal
 function change(dataset) {
@@ -258,9 +271,224 @@ function origins(dataset) {
 		name = "Steel";
 	} else if (dataset == goldData) {
 		name = "Gold";
+	} else if (dataset == allData) {
+		name = "All";
 	};
 
 	var format = d3.format(".0%");
+
+	objectNames = d3.nest()
+		.key(function(d) { return d.objectName; })
+		  	.rollup(function(v) { return v.length; })
+		  	.entries(dataset)
+		  	.sort(function(a,b) {return d3.descending(a.value,b.value);})
+		  	.filter(function (d, i) { return i === 0 | i === 1 | i === 2;});
+		console.log(objectNames);
+
+	var repImg1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[0].key });
+	// console.log(repImg1);
+	var repImg2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[1].key });
+	// console.log(repImg2);
+	var repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
+	// console.log(repImg3);
+
+	d3.select(".image1").selectAll("img").remove();
+
+	var displayRepImg1 = d3.select(".image1").selectAll("#repImg1")
+			.data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .attr("class", "target")
+	        .attr("id", "target1")
+	        .exit();
+
+	d3.select(".image1").selectAll("div").remove();
+
+	var displayOverlay1 = d3.select(".image1").selectAll("#repImg1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay")
+	        .attr("id", "overlay1")
+	        .exit();
+
+	var displayTitle = d3.select(".overlay").selectAll("#overlay1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,60) })
+	        .exit();
+
+	var displayDate = d3.select(".overlay").selectAll("#overlay1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist = d3.select(".overlay").selectAll("#overlay1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .exit();
+
+	var displayCulture = d3.select(".overlay").selectAll("#overlay1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject= d3.select(".overlay").selectAll("#overlay1")
+	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + objectNames[0].value + ")"})
+	        .exit();
+
+	// Rep Image 2
+	d3.select(".image2").selectAll("img").remove();
+
+	var displayRepImg2 = d3.select(".image2").selectAll("#repImg2")
+			.data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+	
+	d3.select(".image2").selectAll("div").remove();
+
+	var displayOverlay2 = d3.select(".image2").selectAll("#repImg2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay2")
+	        .attr("id", "overlay2")
+	        .exit();
+
+	var displayTitle2 = d3.select(".overlay2").selectAll("#overlay2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,60)})
+	        .exit();
+
+	var displayDate2 = d3.select(".overlay2").selectAll("#overlay2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist2 = d3.select(".overlay2").selectAll("#overlay2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .exit();
+
+	var displayCulture2 = d3.select(".overlay2").selectAll("#overlay2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject2= d3.select(".overlay2").selectAll("#overlay2")
+	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + objectNames[1].value + ")"})
+	        .exit();
+
+	// Rep Image 3
+
+	d3.select(".image3").selectAll("img").remove();
+
+	var displayRepImg3 = d3.select(".image3").selectAll("#repImg3")
+			.data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image3").selectAll("div").remove();
+
+	var displayOverlay3 = d3.select(".image3").selectAll("#repImg3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay3")
+	        .attr("id", "overlay3")
+	        .exit();
+
+	var displayTitle3 = d3.select(".overlay3").selectAll("#overlay3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,60) })
+	        .exit();
+
+	var displayDate3 = d3.select(".overlay3").selectAll("#overlay3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist3 = d3.select(".overlay3").selectAll("#overlay3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .exit();
+
+	var displayCulture3 = d3.select(".overlay3").selectAll("#overlay3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject3= d3.select(".overlay3").selectAll("#overlay3")
+	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + objectNames[2].value + ")"})
+	        .exit();
+
+	// Department Filter
 
 	var departments = d3.nest()
    		.key(function(d) { return d.Department; })
@@ -269,60 +497,7 @@ function origins(dataset) {
 	  	.sort(function(a,b) {return d3.descending(a.value,b.value);});
 	console.log(departments);
 
-	d3.select(".caption").selectAll("text").remove();
-
-	var dept1_name = d3.select(".caption").selectAll("#dept1")
-		 	.data(departments.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "name1")
-	        .text(function(d) { return d.key })
-	        .exit();
-
-	var dept1_count = d3.select(".caption").selectAll("#dept1")
-		 	.data(departments.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "count1")
-	        .text(function(d) { return d.value + " items"})
-	        .exit();
-
-	d3.select(".caption2").selectAll("text").remove();
-
-	var dept2_name = d3.select(".caption2").selectAll("#dept2")
-		 	.data(departments.filter(function (d, i) { return i === 1;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "name2")
-	        .text(function(d) { return d.key })
-	        .exit();
-
-	var dept2_count = d3.select(".caption2").selectAll("#dept2")
-		 	.data(departments.filter(function (d, i) { return i === 1;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "count2")
-	        .text(function(d) { return d.value + " items"})
-	        .exit();
-
-	d3.select(".caption3").selectAll("text").remove();
-
-	var dept3_name = d3.select(".caption3").selectAll("#dept3")
-		 	.data(departments.filter(function (d, i) { return i === 2;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "name3")
-	        .text(function(d) { return d.key })
-	        .exit();
-
-	var dept3_count = d3.select(".caption3").selectAll("#dept3")
-		 	.data(departments.filter(function (d, i) { return i === 2;}))
-	        .enter()
-	        .append("text")
-	        .attr("id", "count3")
-	        .text(function(d) { return d.value + " items"})
-	        .exit();
-
+	
 	d3.select(".medium").selectAll("text").remove();
 
 	var choice1 = d3.select(".medium").selectAll("#choice1")
@@ -355,7 +530,7 @@ function origins(dataset) {
 
 	d3.select(".info3").selectAll("text").remove();
 
-	var dept1_percent = d3.select(".info3").selectAll("#dept2-percent")
+	var dept2_percent = d3.select(".info3").selectAll("#dept2-percent")
 			.data(departments.filter(function (d, i) { return i === 1;}))
 	        .enter()
 	        .append("text")
@@ -365,11 +540,31 @@ function origins(dataset) {
 
 	d3.select(".info4").selectAll("text").remove();
 
-	var info_dept1 = d3.select(".info4").selectAll("#dept2-name")
+	var info_dept2 = d3.select(".info4").selectAll("#dept2-name")
 		 	.data(departments.filter(function (d, i) { return i === 1;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "dept2-name")
+	        .text(function(d) { return d.key })
+	        .exit();
+
+	d3.select(".info5").selectAll("text").remove();
+
+	var dept2_percent = d3.select(".info5").selectAll("#dept3-percent")
+			.data(departments.filter(function (d, i) { return i === 2;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "dept3-percent")
+	        .text(function(d) {return format(d.value/totalRows); })
+	        .exit();
+
+	d3.select(".info6").selectAll("text").remove();
+
+	var info_dept2 = d3.select(".info6").selectAll("#dept3-name")
+		 	.data(departments.filter(function (d, i) { return i === 2;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "dept3-name")
 	        .text(function(d) { return d.key })
 	        .exit();
 
@@ -380,7 +575,7 @@ function origins(dataset) {
 
 
 				// change dataset to selected dataset
-				d3.select("input[value=\"total\"]").property("checked", true);
+				d3.select("input[value=\"total\"]").property("checked", false);
 
 			    d3.selectAll("input").on("change", selectDataset);
 
@@ -389,9 +584,9 @@ function origins(dataset) {
 			        var value = this.value;
 			        if (value == "All")
 			        {
-			            change(total);
-			            origins(data);
-			            gallery(data);
+			            change(allData);
+			            origins(allData);
+			            gallery(allData);
 			        }
 			        else if (value == "Wood")
 			        {
