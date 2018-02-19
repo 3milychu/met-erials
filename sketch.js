@@ -783,43 +783,47 @@ function origins(dataset) {
 
 	d3.select(".departments1").selectAll("img").remove();
 
+	var top1random = Math.floor((Math.random() * top1.length) + 0);
+	var top2random = Math.floor((Math.random() * top2.length) + 0);
+	var top3random = Math.floor((Math.random() * top3.length) + 0);
+
 	var displayTop1= d3.select(".departments1").selectAll("#top1")
-			.data(top1.filter(function (d, i) { return i === 0;}))
+			.data(top1.filter(function (d, i) { return i === top1random;}))
 	        .enter()
 	        .append('img')
-	        .style("width","100%")
-	        .style("overflow-y","hidden")
+	        .style("height","150%")
+	        .style("overflow-x","hidden")
 	        .attr("src",function(d) {return d.URL;})
 	       	.style("background-position","center center")
-	        .style("background-size","30%")
+	        // .style("background-size","30%")
 	        .style("position","relative")
 	        .exit();
 
 	d3.select(".departments2").selectAll("img").remove();
 
-	var displayTop1= d3.select(".departments2").selectAll("#top2")
-			.data(top2.filter(function (d, i) { return i === 0;}))
+	var displayTop2= d3.select(".departments2").selectAll("#top2")
+			.data(top2.filter(function (d, i) { return i === top2random;}))
 	        .enter()
 	        .append('img')
-	        .style("width","100%")
-	        .style("overflow-y","hidden")
+	        .style("height","150%")
+	        .style("overflow-x","hidden")
 	        .attr("src",function(d) {return d.URL;})
 	       	.style("background-position","center center")
-	        .style("background-size","30%")
+	        // .style("background-size","30%")
 	        .style("position","relative")
 	        .exit();
 
 	d3.select(".departments3").selectAll("img").remove();
 
-	var displayTop1= d3.select(".departments3").selectAll("#top3")
-			.data(top3.filter(function (d, i) { return i === 0;}))
+	var displayTop3= d3.select(".departments3").selectAll("#top3")
+			.data(top3.filter(function (d, i) { return i === top3random;}))
 	        .enter()
 	        .append('img')
-	        .style("width","100%")
-	        .style("overflow-y","hidden")
+	        .style("height","150%")
+	        .style("overflow-x","hidden")
 	        .attr("src",function(d) {return d.URL;})
 	       	.style("background-position","center center")
-	        .style("background-size","30%")
+	        // .style("background-size","30%")
 	        .style("position","relative")
 	        .exit();
 

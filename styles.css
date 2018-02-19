@@ -493,9 +493,7 @@ text.label{
 #top1{
     width:33.33%;
     height:300px;
-/*    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP279530.jpg");*/
     background-position: center center;
-    background-size:30%;
     position:relative;
     overflow:hidden;
     display:inline-block;
@@ -506,7 +504,6 @@ text.label{
 #top2{
     width:33.33%;
     height:300px;
-/*    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP800838.jpg");*/
     background-position: center;
     background-size:30%;
     position:relative;
