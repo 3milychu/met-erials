@@ -12,12 +12,28 @@ body{
 }
 
 h1 {
-	font-size:2em;
+	font-size:2em; 
 	font-weight:700;
 	margin:0;
 	padding:0;
 	display:inline-block;
 	vertical-align:middle;
+}
+
+a {
+    text-decoration:none;
+}
+
+.rep a {
+    color:#0065B4;
+    padding:2%;
+    border:1px solid #0065B4;
+    line-height:4em;
+}
+
+.rep a:hover {
+    background-color:#0065B4;
+    color:white;
 }
 
 .section-header{
@@ -117,7 +133,7 @@ form {
 }
 
 /*radio boxes */
-input[type="checkbox"] {
+input[type="radio"] {
  -webkit-appearance:none;/* Hides the default checkbox style */ 
  height:2em;
  width:2em;
@@ -131,13 +147,13 @@ input[type="checkbox"] {
  float:right;
 }
 
-input[type="checkbox"]:checked {
+input[type="radio"]:checked {
  background-color:#0065B4;
  vertical-align:text-bottom;
  float:right;
 }
 
-input[type="checkbox"]:before, input[type="checkbox"]:checked:before {
+input[type="radio"]:before, input[type="radio"]:checked:before {
  position:absolute;
  top:0;
  left:0;
@@ -155,7 +171,7 @@ input[type="checkbox"]:before, input[type="checkbox"]:checked:before {
  float:right;
 }
 
-input[type="checkbox"]:checked:before {
+input[type="radio"]:checked:before {
  content: '-';
  border-radius:2em;
  background:#0065B4;
@@ -164,7 +180,7 @@ input[type="checkbox"]:checked:before {
 float:right;
 }
 
-input[type="checkbox"]:hover:before {
+input[type="radio"]:hover:before {
  background:(#0065B4,0.3);
  border-radius:2em;
  vertical-align:text-bottom;
@@ -267,7 +283,35 @@ text.label{
     float:left;
     padding-top:1%;
 }
+/*BEGIN MAIN VIEW*/
 
+/*.main {
+    width:100%;
+    height:90%;
+}*/
+
+.met {
+    height:350px;
+    background-color:#E6E6E6;
+    display:inline-block;
+    width:25%;
+}
+
+.down-arrow {
+    font-size:5em;
+    color:#E6E6E6;
+
+}
+
+.down-arrow:hover {
+    color:#0065B4;
+}
+
+.cover {
+    width:100%;
+    height:100%;
+    position:relative;
+}
 
 /*BEGIN MICRO VIEW*/
 
@@ -277,6 +321,11 @@ text.label{
 }
 
 .container {
+    margin:auto;
+    text-align:center;
+}
+
+.container-micro {
     margin:auto;
     text-align:center;
 }
@@ -434,42 +483,62 @@ text.label{
     margin-left: 2%;
 }
 
-#top1{
+.images {
+    overflow:hidden;
     width:100%;
-    height:80px;
-    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP279530.jpg");
-    background-position: center;
+    height:100%;
+    font-size:0px;
+}
+
+#top1{
+    width:33.33%;
+    height:300px;
+/*    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP279530.jpg");*/
+    background-position: center center;
     background-size:30%;
     position:relative;
+    overflow:hidden;
+    display:inline-block;
+    margin:0;
+    padding:0;
 }
 
 #top2{
-    width:100%;
-    height:80px;
-    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP800838.jpg");
+    width:33.33%;
+    height:300px;
+/*    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP800838.jpg");*/
     background-position: center;
     background-size:30%;
     position:relative;
+    overflow:hidden;
+    display:inline-block;
+    margin:0;
+    padding:0;
 
 }
 
 #top3{
-    width:100%;
-    height:80px;
-    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP803578.jpg");
+    width:33.33%;
+    height:300px;
+/*    background-image: url("https://images.metmuseum.org/CRDImages/dp/web-large/DP803578.jpg");*/
     background-position: center;
     background-size:30%;
     position:relative;
+    overflow:hidden;
+    display:inline-block;
+    margin:0;
+    padding:0;
 
 }
 
 .tile {
-    height:35%;
+    height:auto;
     width:55%;
     background-color:#E6E6E6;
     position:absolute;
     margin-left:3%;
-    margin-bottom:10%;
+    padding-bottom:3%;
+    margin-bottom:5%;
     margin-right:3%;
 }
 
@@ -515,10 +584,21 @@ text.label{
     font-size:0.6em;
 }
 
+.leftInfo {
+    width:50%;
+    float:left;
+}
+
+.rightInfo {
+    width:40%;
+    float:right;
+}
+
 .info{
     bottom:0;
     padding:5%;
     background-color:#E6E6E6;
+    height:100%;
 }
 
 .medium text {
@@ -583,4 +663,43 @@ text.label{
     padding:2%;
     font-weight:300;
     line-height: 2em;
+}
+
+/*Culture Gauage*/
+
+.gauge {
+    width:100%;
+    height:20px;
+    background-color: #E6E6E6;
+    position:relative;
+    float:left;
+    margin-bottom:10%:;
+    margin-left:3%;
+}
+
+#gauge1 {
+    background-color:#0065B4;
+    width:30%;
+    height:100%;
+    display:inline-block;
+    float:left;
+
+}
+
+#gauge2 {
+    width:10%;
+    height:100%;
+    display:inline;
+    background-color:#3B95DB;
+    display:inline-block;
+    float:left;
+}
+
+#gauge3 {
+    width:2%;
+    height:100%;
+    display:inline;
+    background-color:#6BAADB;
+    display:inline-block;
+    float:left;
 }
