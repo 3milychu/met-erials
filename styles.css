@@ -583,14 +583,14 @@ text.label{
 }
 
 .leftInfo {
-    width:50%;
+    width:100%;
     float:left;
 }
 
-.rightInfo {
+/*.rightInfo {
     width:40%;
     float:right;
-}
+}*/
 
 .info{
     bottom:0;
