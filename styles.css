@@ -29,7 +29,7 @@ a {
     color:#0065B4;
     padding:2%;
     border:1px solid #0065B4;
-    line-height:4em;
+    line-height:5em;
 }
 
 .rep a:hover {
@@ -805,5 +805,8 @@ text.label{
             margin:0%;
             display:inline-block;
             width:35%;
+        }
+        .rep a {
+            line-height:3em;
         }
     }
