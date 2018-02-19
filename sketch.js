@@ -327,6 +327,20 @@ function change(dataset) {
 	        .style("background-size","30%")
 	        .style("position","relative")
 	        .exit();
+	} else if (dataset == allData) {
+		d3.select(".cover").selectAll("img").remove();
+
+		var displayMet= d3.select(".cover").selectAll("#cover1")
+			.data(dataset.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .attr("src","assets/all.jpg")
+	       	.style("background-position","center center")
+	        .style("background-size","30%")
+	        .style("position","relative")
+	        .exit();
 	};
 	
 	window.location.href = "#top";
@@ -498,17 +512,19 @@ function origins(dataset) {
 		  	.filter(function (d, i) { return i === 0 | i === 1 | i === 2;});
 		console.log(objectNames);
 
-	var repImg1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[0].key });
+	repImg1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[0].key });
 	// console.log(repImg1);
-	var repImg2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[1].key });
+	repImg2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[1].key });
 	// console.log(repImg2);
-	var repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
+	repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
 	// console.log(repImg3);
 
 	d3.select(".image1").selectAll("img").remove();
 
+	var img1random = Math.floor((Math.random() * repImg1.length) + 0);
+
 	var displayRepImg1 = d3.select(".image1").selectAll("#repImg1")
-			.data(repImg1.filter(function (d, i) { return i === 0;}))
+			.data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append('img')
 	        .style("width","100%")
@@ -523,7 +539,7 @@ function origins(dataset) {
 	d3.select(".image1").selectAll("div").remove();
 
 	var displayOverlay1 = d3.select(".image1").selectAll("#repImg1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append('div')
 	        .attr("class", "overlay")
@@ -531,7 +547,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayTitle = d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
@@ -539,7 +555,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayDate = d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectBeginDate")
@@ -547,7 +563,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayArtist = d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
@@ -555,7 +571,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayCulture = d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
@@ -563,7 +579,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayObject= d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
@@ -571,7 +587,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayLink= d3.select(".overlay").selectAll("#overlay1")
-	        .data(repImg1.filter(function (d, i) { return i === 0;}))
+	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
 	        .enter()
 	        .append("a")
 	        .attr("id", "link")
@@ -581,10 +597,13 @@ function origins(dataset) {
 	        .exit();
 
 	// Rep Image 2
+
+	var img2random = Math.floor((Math.random() * repImg2.length) + 0);
+
 	d3.select(".image2").selectAll("img").remove();
 
 	var displayRepImg2 = d3.select(".image2").selectAll("#repImg2")
-			.data(repImg2.filter(function (d, i) { return i === 0;}))
+			.data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append('img')
 	        .style("width","100%")
@@ -598,7 +617,7 @@ function origins(dataset) {
 	d3.select(".image2").selectAll("div").remove();
 
 	var displayOverlay2 = d3.select(".image2").selectAll("#repImg2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append('div')
 	        .attr("class", "overlay2")
@@ -606,7 +625,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayTitle2 = d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
@@ -614,7 +633,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayDate2 = d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectBeginDate")
@@ -622,7 +641,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayArtist2 = d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
@@ -630,7 +649,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayCulture2 = d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
@@ -638,7 +657,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayObject2= d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
@@ -646,7 +665,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayLink2= d3.select(".overlay2").selectAll("#overlay2")
-	        .data(repImg2.filter(function (d, i) { return i === 0;}))
+	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
 	        .append("a")
 	        .attr("id", "link")
@@ -657,10 +676,12 @@ function origins(dataset) {
 
 	// Rep Image 3
 
+	var img3random = Math.floor((Math.random() * repImg3.length) + 0);
+
 	d3.select(".image3").selectAll("img").remove();
 
 	var displayRepImg3 = d3.select(".image3").selectAll("#repImg3")
-			.data(repImg3.filter(function (d, i) { return i === 0;}))
+			.data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append('img')
 	        .style("width","100%")
@@ -674,7 +695,7 @@ function origins(dataset) {
 	d3.select(".image3").selectAll("div").remove();
 
 	var displayOverlay3 = d3.select(".image3").selectAll("#repImg3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append('div')
 	        .attr("class", "overlay3")
@@ -682,7 +703,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayTitle3 = d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
@@ -690,7 +711,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayDate3 = d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectBeginDate")
@@ -698,7 +719,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayArtist3 = d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
@@ -706,7 +727,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayCulture3 = d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
@@ -714,7 +735,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayObject3= d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
@@ -722,7 +743,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayLink= d3.select(".overlay3").selectAll("#overlay3")
-	        .data(repImg3.filter(function (d, i) { return i === 0;}))
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
 	        .append("a")
 	        .attr("id", "link")
