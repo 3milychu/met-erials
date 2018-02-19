@@ -720,6 +720,7 @@ text.label{
  @media screen and (max-width:1000px) {
         #section-one, #section-two{
             margin-top:30%;
+            margin-bottom:5%;
         }
         #total {
             margin-top:50%;
