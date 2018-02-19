@@ -718,14 +718,17 @@ text.label{
     }
 
  @media screen and (max-width:1000px) {
-        #section-one, #section-two, #total{
-        margin-top:30%;
+        #section-one, #section-two{
+            margin-top:30%;
+        }
+        #total {
+            margin-top:50%;
         }
         .met {
-        height:auto;
-        background-color:#E6E6E6;
-        display:inline-block;
-        width:50%;
+            height:auto;
+            background-color:#E6E6E6;
+            display:inline-block;
+            width:50%;
         }
         .name {
             width:10%;
@@ -775,7 +778,8 @@ text.label{
         .rep {
             height:350px;
             background-color:#E6E6E6;
-            margin:2%;
+            margin:0%;
             display:inline-block;
+            width:35%;
         }
     }
