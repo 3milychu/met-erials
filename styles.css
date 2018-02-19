@@ -748,4 +748,34 @@ text.label{
         #summary {
             margin-bottom:60%;
         }
+        #objectTitle {
+            font-size:1.5em;
+            padding-left:10%;
+            padding-right:10%;
+            padding-top:10%;
+            padding-bottom:1%;
+            display:block;
+        }
+
+        #objectBeginDate {
+            font-weight:700;
+            font-size:1em;
+            display:block;
+            padding-bottom:1%;
+
+        }
+
+        #artistDisplayName, #where, #objectName {
+            font-weight:400;
+            font-size:1em;
+            display:block;
+            line-height:1em;
+
+        }
+        .rep {
+            height:350px;
+            background-color:#E6E6E6;
+            margin:2%;
+            display:inline-block;
+        }
     }
