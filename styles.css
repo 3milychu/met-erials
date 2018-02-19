@@ -67,6 +67,7 @@ a {
 
 .content {
     padding-top:10%;
+    height:100%;
 }
 
 .sticky + .content {
@@ -305,6 +306,20 @@ text.label{
 }
 
 .down-arrow:hover {
+    color:#0065B4;
+}
+
+.up-arrow {
+    font-size:5em;
+    color:#E6E6E6;
+    margin:45%;
+    margin-top:30%;
+    display:block;
+
+
+}
+
+.up-arrow:hover {
     color:#0065B4;
 }
 
