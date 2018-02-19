@@ -697,6 +697,7 @@ text.label{
     float:left;
     margin-bottom:10%:;
     margin-left:3%;
+    cursor:pointer;
 }
 
 #gauge1 {
@@ -705,6 +706,7 @@ text.label{
     height:100%;
     display:inline-block;
     float:left;
+    cursor:pointer;
 
 }
 
@@ -715,6 +717,7 @@ text.label{
     background-color:#3B95DB;
     display:inline-block;
     float:left;
+    cursor:pointer;
 }
 
 #gauge3 {
@@ -724,8 +727,48 @@ text.label{
     background-color:#6BAADB;
     display:inline-block;
     float:left;
+    cursor:pointer;
 }
 
+#gauge4 {
+    width:2%;
+    height:100%;
+    display:inline;
+    background-color:#8CAADB;
+    display:inline-block;
+    float:left;
+    cursor:pointer;
+}
+
+#gauge5 {
+    width:2%;
+    height:100%;
+    display:inline;
+    background-color:#C3C9E6;
+    display:inline-block;
+    float:left;
+    cursor:pointer;
+}
+
+#gauge6 {
+    width:2%;
+    height:100%;
+    display:inline;
+    background-color:#D2C1D2;
+    display:inline-block;
+    float:left;
+    cursor:pointer;
+}
+
+#gauge7 {
+    width:2%;
+    height:100%;
+    display:inline;
+    background-color:#D2B1AA;
+    display:inline-block;
+    float:left;
+    cursor:pointer;
+}
 
 /*RESPONSIVE*/
 
@@ -789,7 +832,6 @@ text.label{
             font-size:1em;
             display:block;
             padding-bottom:1%;
-
         }
 
         #artistDisplayName, #where, #objectName {

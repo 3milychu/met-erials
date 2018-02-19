@@ -430,46 +430,116 @@ function origins(dataset) {
 	        .enter()
 	        .append("div")
 	        .attr("id", "gauge1")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture1();")
+	        .attr("onmouseout", "restoreCulture1();")
 	        .style("width",function(d) {return format(d.value/totalRows); })
 	        .exit();
 	var div1 = d3.select(".gauge").selectAll("#gaugeFill")
 			.data(origins.filter(function (d, i) { return i === 0;}))
 	        .enter()
 	        .append("div")
-	        .style("width",function(d) {return format(d.value/totalRows); })
-	        .exit();
-	var div2 = d3.select(".gauge").selectAll("#gaugeFill")
-			.data(origins.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append("div")
-	        .style("width",function(d) {return format(d.value/totalRows); })
+	        .style("width","0%")
 	        .exit();
 
-	var gauge1 = d3.select(".gauge").selectAll("#gaugeFill")
+	var gauge2 = d3.select(".gauge").selectAll("#gaugeFill")
 			.data(origins.filter(function (d, i) { return i === 1;}))
 	        .enter()
 	        .append("div")
 	        .attr("id", "gauge2")
-	        .style("width",function(d) {return format(d.value/totalRows); })
-	        .exit();
-	var div1 = d3.select(".gauge").selectAll("#gaugeFill")
-			.data(origins.filter(function (d, i) { return i === 1;}))
-	        .enter()
-	        .append("div")
-	        .style("width",function(d) {return format(d.value/totalRows); })
-	        .exit();
-	var div2 = d3.select(".gauge").selectAll("#gaugeFill")
-			.data(origins.filter(function (d, i) { return i === 1;}))
-	        .enter()
-	        .append("div")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture2();")
+	        .attr("onmouseout", "restoreCulture2();")
 	        .style("width",function(d) {return format(d.value/totalRows); })
 	        .exit();
 
-	var gauge1 = d3.select(".gauge").selectAll("#gaugeFill")
+	var div2 = d3.select(".gauge").selectAll("#gaugeFill")
+		.data(origins.filter(function (d, i) { return i === 1;}))
+        .enter()
+        .append("div")
+        .style("width","0%")
+        .exit();
+
+	var gauge3 = d3.select(".gauge").selectAll("#gaugeFill")
 			.data(origins.filter(function (d, i) { return i === 2;}))
 	        .enter()
 	        .append("div")
 	        .attr("id", "gauge3")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture3();")
+	        .attr("onmouseout", "restoreCulture3();")
+	        .style("width",function(d) {return format(d.value/totalRows); })
+	        .exit();
+
+	var div3 = d3.select(".gauge").selectAll("#gaugeFill")
+		.data(origins.filter(function (d, i) { return i === 2;}))
+        .enter()
+        .append("div")
+        .style("width","0%")
+        .exit();
+
+	var gauge4 = d3.select(".gauge").selectAll("#gaugeFill")
+			.data(origins.filter(function (d, i) { return i === 3;}))
+	        .enter()
+	        .append("div")
+	        .attr("id", "gauge4")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture4();")
+	        .attr("onmouseout", "restoreCulture4();")
+	        .style("width",function(d) {return format(d.value/totalRows); })
+	        .exit();
+
+	var div4 = d3.select(".gauge").selectAll("#gaugeFill")
+		.data(origins.filter(function (d, i) { return i === 4;}))
+        .enter()
+        .append("div")
+        .style("width","0%")
+        .exit();
+
+	var gauge5 = d3.select(".gauge").selectAll("#gaugeFill")
+			.data(origins.filter(function (d, i) { return i === 4;}))
+	        .enter()
+	        .append("div")
+	        .attr("id", "gauge5")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture5();")
+	        .attr("onmouseout", "restoreCulture5();")
+	        .style("width",function(d) {return format(d.value/totalRows); })
+	        .exit();
+
+	var div5 = d3.select(".gauge").selectAll("#gaugeFill")
+		.data(origins.filter(function (d, i) { return i === 4;}))
+        .enter()
+        .append("div")
+        .style("width","0%")
+        .exit();
+
+	var gauge6 = d3.select(".gauge").selectAll("#gaugeFill")
+			.data(origins.filter(function (d, i) { return i === 5;}))
+	        .enter()
+	        .append("div")
+	        .attr("id", "gauge6")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture6();")
+	        .attr("onmouseout", "restoreCulture6();")
+	        .style("width",function(d) {return format(d.value/totalRows); })
+	        .exit();
+
+	var div6 = d3.select(".gauge").selectAll("#gaugeFill")
+		.data(origins.filter(function (d, i) { return i === 5;}))
+        .enter()
+        .append("div")
+        .style("width","0%")
+        .exit();
+
+	var gauge7 = d3.select(".gauge").selectAll("#gaugeFill")
+			.data(origins.filter(function (d, i) { return i === 6;}))
+	        .enter()
+	        .append("div")
+	        .attr("id", "gauge7")
+	        .attr("cursor", "pointer")
+	        .attr("onmouseover", "boldCulture7();")
+	        .attr("onmouseout", "restoreCulture7();")
 	        .style("width",function(d) {return format(d.value/totalRows); })
 	        .exit();
     // end update origins function
