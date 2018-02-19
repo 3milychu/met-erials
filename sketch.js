@@ -343,7 +343,7 @@ function change(dataset) {
 	        .exit();
 	};
 	
-	window.location.href = "#top";
+	// window.location.href = "#top";
 // end change dataset function
 };
 
@@ -485,20 +485,28 @@ function origins(dataset) {
 
 	if (dataset == woodData){
 		name = "Wood";
+		call = "woodData"
 	} else if (dataset == silkData) {
 		name = "Silk";
+		call = "silkData"
 	} else if (dataset == inkData) {
 		name = "Ink";
+		call = "inkData"
 	} else if (dataset == silverData) {
 		name = "Silver";
+		call = "silverData"
 	} else if (dataset == glassData) {
 		name = "Glass";
+		call = "glassData"
 	} else if (dataset == steelData) {
 		name = "Steel";
+		call = "steelData"
 	} else if (dataset == goldData) {
 		name = "Gold";
+		call = "goldData"
 	} else if (dataset == allData) {
 		name = "All";
+		call = "allData"
 	};
 
 	var format = d3.format(".0%");
@@ -900,19 +908,30 @@ function origins(dataset) {
 	        .text(function(d) { return d.key })
 	        .exit();
 
+	// d3.select(".button").selectAll("button").remove();
 
-	
+	// d3.select(".button").selectAll("#updateRandoms")
+ //   		.data(dataset.filter(function (d, i) { return i === 0}))
+ //   		.enter()
+ //   		.append("button")
+ //   		.attr("value",name)
+ //   		.text("Shuffle")
+ //   		.exit()
+  
     // end update gallery function
     };
+
+    
 
 
 				// change dataset to selected dataset
 				d3.select("input[value=\"total\"]").property("checked", false);
 
 			    d3.selectAll("input").on("change", selectDataset);
+			    d3.selectAll("input").on("click", selectDataset);
+			    // d3.selectAll("button").on("click", selectDataset);
 
-			    function selectDataset()
-			    {
+			    function selectDataset(){
 			        var value = this.value;
 			        if (value == "All")
 			        {
@@ -975,7 +994,7 @@ function origins(dataset) {
 			      
 		});
 
-//end getHistogram function
+//end getInfo function
 	};
 
 
