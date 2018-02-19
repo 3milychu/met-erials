@@ -639,6 +639,7 @@ text.label{
     width:20%;
     float:right;
     margin-right:10%;
+    margin-bottom:30%;
 }
 
 #origins h1{
@@ -711,6 +712,9 @@ text.label{
         #section-one, #section-two, #total{
         margin-top:30%;
         }
+        #origins {
+            margin-bottom:50%;
+        }
     }
 
  @media screen and (max-width:1000px) {
@@ -723,5 +727,25 @@ text.label{
         display:inline-block;
         width:50%;
         }
-
+        .name {
+            width:10%;
+            margin:auto;
+            text-align:center;
+            margin-left:5%;
+            padding-top:3%;
+        }
+        #origins {
+            margin-bottom:50%;
+        }
+        #meterials {
+            font-size:1.2em;
+        }
+        #selector {
+            width:80%;
+            float:right;
+            line-height:3em;
+        }
+        #summary {
+            margin-bottom:60%;
+        }
     }
