@@ -22,7 +22,7 @@ h1 {
 
 a {
     text-decoration:none;
-    
+
 }
 
 .rep a {
@@ -701,3 +701,27 @@ text.label{
     display:inline-block;
     float:left;
 }
+
+
+/*RESPONSIVE*/
+
+/*Monitors*/
+
+ @media screen and (min-height: 2560px) {
+        #section-one, #section-two, #total{
+        margin-top:10%;
+        }
+    }
+
+ @media screen and (max-width:1000px) {
+        #section-one, #section-two, #total{
+        margin-top:30%;
+        }
+        .met {
+        height:auto;
+        background-color:#E6E6E6;
+        display:inline-block;
+        width:50%;
+        }
+
+    }
