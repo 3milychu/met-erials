@@ -32,6 +32,11 @@ function setup(){
 		document.getElementById("arrow").style.display="none";
 	};
 
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )  {
+    // Just replacing the value of the 'content' attribute will not work.
+    $("meta[property=og:url]").remove();
+	};
+
 	noCanvas();
 
 	getInfo();
