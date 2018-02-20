@@ -34,8 +34,12 @@ a {
 .mobileMessage {
     margin:auto;
     text-align:center;
-    font-size:2em;
     vertical-align:middle;
+    padding:30%;
+}
+
+.mobileMessage p {
+    font-size:2em;
 }
 
 .rep a {
