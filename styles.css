@@ -785,7 +785,7 @@ text.label{
 
  @media screen and (max-width:1000px) {
         #section-one, #section-two{
-            margin-top:25%;
+            margin-top:15%;
             margin-bottom:5%;
         }
         #total {
