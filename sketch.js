@@ -29,7 +29,40 @@ function setup(){
 
 	getInfo();
 
+	window.onscroll = function() {scrollState()};
+
 	};
+
+function scrollState () {
+
+
+	var elmnt = document.getElementById("title");
+	var rep = elmnt.offsetTop;
+
+	if (window.pageYOffset >= elmnt.offsetHeight) { 
+		   $('input:not(:checked').parent().hide();
+		   $("input:checked").css("display", "inline");
+		    $("label").css("marginLeft", "35%");
+		   $("label" ).css("fontSize", "4em");
+		   $("label" ).css("textAlign", "center");
+		   $("input:checked").css("float", "none");
+		    $("input:checked").css("verticalAlign", "top");
+		   $("input[type=radio]").css("width", "3em");
+		   $("input[type=radio]").css("height", "3em");
+		    $("input:checked").css("fontSize", "0.5em");
+	} else  {
+			$("input:checked").css("display", "inline")
+			$("label").css("marginLeft", "0%");
+			$("label" ).css("textAlign", "none");
+		   $("input:checked").css("float", "right");
+		   $("input[type=radio]").css("width", "2em");
+		   $("input[type=radio]").css("height", "2em");
+		    $("input:checked").css("fontSize", "11px");
+			$('input:not(:checked').parent().show();
+			$("label").css("fontSize", "1.5em");
+
+	};
+};
 
 function getInfo(){
 
