@@ -851,6 +851,9 @@ text.label{
         .rep a {
             line-height:3em;
         }
+        .up-arrow{
+            margin-top:50%;
+        }
     }
 
     @media screen and (max-width:480px) {
