@@ -30,7 +30,6 @@ function setup(){
 		document.getElementById("title").style.display="none";
 		document.getElementById("top").style.display="none";
 		document.getElementById("arrow").style.display="none";
-
 	};
 
 	noCanvas();

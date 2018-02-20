@@ -36,10 +36,13 @@ a {
     text-align:center;
     vertical-align:middle;
     padding:30%;
+    display:block;
+    margin-top:10%;
 }
 
 .mobileMessage p {
     font-size:2em;
+    display:block;
 }
 
 .rep a {
