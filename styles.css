@@ -852,3 +852,34 @@ text.label{
             line-height:3em;
         }
     }
+
+    @media screen and (max-width:480px) {
+        .name {
+            width:100%:;
+        }       
+
+        #selector {
+            width:100%:;
+        }
+        label {
+            font-weight: 900;
+            font-size:1em;
+            line-height:1.2em;
+            padding:2%;
+        }
+        .rep {
+            width:100%;
+            height:auto;
+            overflow-y:hidden;
+        }
+
+        #gallery {
+            width:100%;
+        }
+
+        #origins {
+            width:100%;
+        }
+
+
+    }
