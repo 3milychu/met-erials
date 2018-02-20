@@ -25,6 +25,17 @@ a {
 
 }
 
+.mobileDisplay{
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+.mobileMessage {
+    margin:auto;
+    text-align:center;
+}
+
 .rep a {
     color:#0065B4;
     padding:2%;
