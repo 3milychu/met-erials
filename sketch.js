@@ -27,6 +27,10 @@ function setup(){
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		document.getElementById("mobile").style.display="inline";
+		document.getElementById("mobile").style.padding="30%";
+		document.getElementById("title").style.display="none";
+		document.getElementById("top").style.display="none";
+
 	};
 
 	noCanvas();
