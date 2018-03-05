@@ -80,7 +80,7 @@ function scrollState () {
 // Get the data and process it by material
 function getInfo(){
 
-d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/labs/analysis/topMediums_final.csv", function(data) {
+d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/topMediums_final.csv", function(data) {
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
