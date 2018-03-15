@@ -20,6 +20,9 @@ var objectNames;
 var repImg1;
 var repImg2;
 var repImg3;
+var repImg4;
+var repImg5;
+var repImg6;
 
 //Sketch histogram
 
@@ -634,7 +637,8 @@ function origins(dataset) {
 		  	.rollup(function(v) { return v.length; })
 		  	.entries(dataset)
 		  	.sort(function(a,b) {return d3.descending(a.value,b.value);})
-		  	.filter(function (d, i) { return i === 0 | i === 1 | i === 2;});
+		  	.filter(function (d, i) { return i === 0 | i === 1 | i === 2 | i === 3 | i === 4 | i === 5 | i === 6 | i === 7 | i === 8
+		  		| i === 9;});
 		console.log(objectNames);
 
 	repImg1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[0].key });
@@ -643,6 +647,22 @@ function origins(dataset) {
 	// console.log(repImg2);
 	repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
 	// console.log(repImg3);
+	repImg4 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[3].key });
+	// console.log(repImg4);
+	repImg5 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[4].key });
+	// console.log(repImg5);
+	repImg6 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[5].key });
+	// console.log(repImg6);
+	repImg7 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[6].key });
+	// console.log(repImg7);
+	repImg8 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[7].key });
+	// console.log(repImg8);
+	repImg9 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[8].key });
+	// console.log(repImg9);
+	repImg10 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[9].key });
+	// console.log(repImg10);
+
+	// Rep Image 1
 
 	d3.select(".image1").selectAll("img").remove();
 
@@ -692,7 +712,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
 	        .exit();
 
 	var displayCulture = d3.select(".overlay").selectAll("#overlay1")
@@ -770,7 +790,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
 	        .exit();
 
 	var displayCulture2 = d3.select(".overlay2").selectAll("#overlay2")
@@ -848,7 +868,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
 	        .exit();
 
 	var displayCulture3 = d3.select(".overlay3").selectAll("#overlay3")
@@ -876,6 +896,553 @@ function origins(dataset) {
 	        .attr("target","_blank")
 	        .text("View")
 	        .exit();
+
+	// Rep Image 4
+
+	var img4random = Math.floor((Math.random() * repImg4.length) + 0);
+
+	d3.select(".image4").selectAll("img").remove();
+
+	var displayRepImg4 = d3.select(".image4").selectAll("#repImg4")
+			.data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image4").selectAll("div").remove();
+
+	var displayOverlay4 = d3.select(".image4").selectAll("#repImg4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay4")
+	        .attr("id", "overlay4")
+	        .exit();
+
+	var displayTitle4 = d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate4 = d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist4 = d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture4 = d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject4= d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay4").selectAll("#overlay4")
+	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 5
+
+	var img5random = Math.floor((Math.random() * repImg5.length) + 0);
+
+	d3.select(".image5").selectAll("img").remove();
+
+	var displayRepImg5 = d3.select(".image5").selectAll("#repImg5")
+			.data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image5").selectAll("div").remove();
+
+	var displayOverlay5 = d3.select(".image5").selectAll("#repImg5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay5")
+	        .attr("id", "overlay5")
+	        .exit();
+
+	var displayTitle5 = d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate5 = d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist5 = d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture5 = d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject5= d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay5").selectAll("#overlay5")
+	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 6
+
+	var img6random = Math.floor((Math.random() * repImg6.length) + 0);
+
+	d3.select(".image6").selectAll("img").remove();
+
+	var displayRepImg6 = d3.select(".image6").selectAll("#repImg6")
+			.data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image6").selectAll("div").remove();
+
+	var displayOverlay6 = d3.select(".image6").selectAll("#repImg6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay6")
+	        .attr("id", "overlay6")
+	        .exit();
+
+	var displayTitle6 = d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate6 = d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist6 = d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture6 = d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject6= d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay6").selectAll("#overlay6")
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 7
+
+	var img7random = Math.floor((Math.random() * repImg7.length) + 0);
+
+	d3.select(".image7").selectAll("img").remove();
+
+	var displayRepImg7 = d3.select(".image7").selectAll("#repImg7")
+			.data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image7").selectAll("div").remove();
+
+	var displayOverlay7 = d3.select(".image7").selectAll("#repImg7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay7")
+	        .attr("id", "overlay7")
+	        .exit();
+
+	var displayTitle7 = d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate7 = d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist7 = d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture7 = d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject7= d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay7").selectAll("#overlay7")
+	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 8
+
+	var img8random = Math.floor((Math.random() * repImg8.length) + 0);
+
+	d3.select(".image8").selectAll("img").remove();
+
+	var displayRepImg8 = d3.select(".image8").selectAll("#repImg8")
+			.data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image8").selectAll("div").remove();
+
+	var displayOverlay8 = d3.select(".image8").selectAll("#repImg8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay8")
+	        .attr("id", "overlay8")
+	        .exit();
+
+	var displayTitle8 = d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate8 = d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist8 = d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture8 = d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject8= d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay8").selectAll("#overlay8")
+	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 8
+
+	var img9random = Math.floor((Math.random() * repImg9.length) + 0);
+
+	d3.select(".image9").selectAll("img").remove();
+
+	var displayRepImg9 = d3.select(".image9").selectAll("#repImg9")
+			.data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image9").selectAll("div").remove();
+
+	var displayOverlay9 = d3.select(".image9").selectAll("#repImg9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay9")
+	        .attr("id", "overlay9")
+	        .exit();
+
+	var displayTitle9 = d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate9 = d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist9 = d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture9 = d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject9= d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg8.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay9").selectAll("#overlay9")
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
+	// Rep Image 10
+
+	var img10random = Math.floor((Math.random() * repImg10.length) + 0);
+
+	d3.select(".image10").selectAll("img").remove();
+
+	var displayRepImg10 = d3.select(".image10").selectAll("#repImg10")
+			.data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append('img')
+	        .style("width","100%")
+	        .style("height","100%")
+	        .style("background-position","center")
+	        .style("background-size","30%")
+	        .attr("src",function(d) {return d.URL;})
+	        .append('a').attr('href',function(d) {return d.URL;})
+	        .exit();
+
+	d3.select(".image10").selectAll("div").remove();
+
+	var displayOverlay10 = d3.select(".image10").selectAll("#repImg10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append('div')
+	        .attr("class", "overlay10")
+	        .attr("id", "overlay10")
+	        .exit();
+
+	var displayTitle10 = d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectTitle")
+	        .text(function(d) { return d.Title.substring(0,40) })
+	        .exit();
+
+	var displayDate10 = d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectBeginDate")
+	        .text(function(d) { return d.objectBeginDate })
+	        .exit();
+
+	var displayArtist10 = d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "artistDisplayName")
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .exit();
+
+	var displayCulture10 = d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "where")
+	        .text(function(d) { return "Culture: " + d.Culture })
+	        .exit();
+
+	var displayObject10= d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("text")
+	        .attr("id", "objectName")
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .exit();
+
+	var displayLink= d3.select(".overlay10").selectAll("#overlay10")
+	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+	        .enter()
+	        .append("a")
+	        .attr("id", "link")
+	        .attr("href",function(d) {return d.linkResolution})
+	        .attr("target","_blank")
+	        .text("View")
+	        .exit();
+
 
 	 // Total Count
 
