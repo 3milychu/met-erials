@@ -35,32 +35,42 @@ function setup(){
 		document.getElementById("arrow").style.display="none";
 	};
 
-	// if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )  {
- //    // Just replacing the value of the 'content' attribute will not work.
- //    $("meta[property=og:url]").remove();
-	// };
-
 	noCanvas();
 
 	getInfo();
 
+	// IsSafari();
 	window.onscroll = function() {scrollState()};
 
 	};
 
-// Detect Safari Browser
-function IsSafari() {
+// function scrollStateSafari() {
 
-  var is_safari = navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
-  return is_safari;
+// 	if($(window).scrollTop() + $(window).height() > 1000) {
+//        $('input:not(:checked').parent().css("display","none");
+// 		   $("input:checked").css("display", "inline");
+// 		   $("label").css("marginLeft", "35%");
+// 		   $("label" ).css("fontSize", "4em");
+// 		   $("label" ).css("textAlign", "center");
+// 		   $("input:checked").css("float", "none");
+// 		   $("input:checked").css("verticalAlign", "top");
+// 		   $("input[type=radio]").css("width", "3em");
+// 		   $("input[type=radio]").css("height", "3em");
+// 		   $("input:checked").css("fontSize", "0.5em");
+//    		} else {
+//    			$("input:checked").css("display", "inline")
+// 			$("label").css("marginLeft", "0%");
+// 			$("label" ).css("textAlign", "none");
+// 		    $("input:checked").css("float", "right");
+// 		    $("input[type=radio]").css("width", "2em");
+// 		    $("input[type=radio]").css("height", "2em");
+// 		    $("input:checked").css("fontSize", "11px");
+// 			// $('input:not(:checked').parent().show();
+// 			$('input:not(:checked').parent().css("display","inline-block");
+// 			$("label").css("fontSize", "1.5em");
+//    };
 
-  if (is_safari == TRUE) {
-
-  } else {
-  	scrollState();
-  };
-
-}
+// }
 
 // Input item appearance changes on scroll down/up
 function scrollState() {
@@ -70,8 +80,8 @@ function scrollState() {
 	var rep = elmnt.offsetTop;
 
 	if (window.pageYOffset >= elmnt.offsetHeight) { 
-		   $('input:not(:checked').parent().hide();
-		   // $('input:not(:checked').parent().css("display","none");
+		   // $('input:not(:checked').parent().hide();
+		   $('input:not(:checked').parent().css("display","none");
 		   $("input:checked").css("display", "inline");
 		   $("label").css("marginLeft", "35%");
 		   $("label" ).css("fontSize", "4em");
@@ -89,8 +99,8 @@ function scrollState() {
 		    $("input[type=radio]").css("width", "2em");
 		    $("input[type=radio]").css("height", "2em");
 		    $("input:checked").css("fontSize", "11px");
-			$('input:not(:checked').parent().show();
-			// $('input:not(:checked').parent().css("display","none");
+			// $('input:not(:checked').parent().show();
+			$('input:not(:checked').parent().css("display","inline-block");
 			$("label").css("fontSize", "1.5em");
 
 	};
