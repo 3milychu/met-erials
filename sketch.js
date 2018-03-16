@@ -48,8 +48,22 @@ function setup(){
 
 	};
 
+// Detect Safari Browser
+function IsSafari() {
+
+  var is_safari = navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
+  return is_safari;
+
+  if (is_safari == TRUE) {
+
+  } else {
+  	scrollState();
+  };
+
+}
+
 // Input item appearance changes on scroll down/up
-function scrollState () {
+function scrollState() {
 
 
 	var elmnt = document.getElementById("title");
@@ -57,24 +71,26 @@ function scrollState () {
 
 	if (window.pageYOffset >= elmnt.offsetHeight) { 
 		   $('input:not(:checked').parent().hide();
+		   // $('input:not(:checked').parent().css("display","none");
 		   $("input:checked").css("display", "inline");
-		    $("label").css("marginLeft", "35%");
+		   $("label").css("marginLeft", "35%");
 		   $("label" ).css("fontSize", "4em");
 		   $("label" ).css("textAlign", "center");
 		   $("input:checked").css("float", "none");
-		    $("input:checked").css("verticalAlign", "top");
+		   $("input:checked").css("verticalAlign", "top");
 		   $("input[type=radio]").css("width", "3em");
 		   $("input[type=radio]").css("height", "3em");
-		    $("input:checked").css("fontSize", "0.5em");
+		   $("input:checked").css("fontSize", "0.5em");
 	} else  {
 			$("input:checked").css("display", "inline")
 			$("label").css("marginLeft", "0%");
 			$("label" ).css("textAlign", "none");
-		   $("input:checked").css("float", "right");
-		   $("input[type=radio]").css("width", "2em");
-		   $("input[type=radio]").css("height", "2em");
+		    $("input:checked").css("float", "right");
+		    $("input[type=radio]").css("width", "2em");
+		    $("input[type=radio]").css("height", "2em");
 		    $("input:checked").css("fontSize", "11px");
 			$('input:not(:checked').parent().show();
+			// $('input:not(:checked').parent().css("display","none");
 			$("label").css("fontSize", "1.5em");
 
 	};
@@ -1348,7 +1364,7 @@ function origins(dataset) {
 	        .exit();
 
 	var displayObject9= d3.select(".overlay9").selectAll("#overlay9")
-	        .data(repImg8.filter(function (d, i) { return i === img9random;}))
+	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
