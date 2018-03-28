@@ -12,4 +12,4 @@ The build uses d3.js, especially d3.select, to randomize representative objects 
 
 ## Documentation
 
-Outlined process can be found at 3milychu.github.io/culturaldata
+Outlined process can be found at https://3milychu.github.io/culturaldata
