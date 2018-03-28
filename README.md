@@ -9,3 +9,7 @@ General Manager of Collection Information, MET: Jennie Choi<br>
 ## Summary
 
 The build uses d3.js, especially d3.select, to randomize representative objects in the MET collection based on the associated raw material selected. 
+
+## Documentation
+
+Outlined process can be found at 3milychu.github.io/culturaldata
