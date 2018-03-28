@@ -2,9 +2,9 @@
 
 Met.erials is a web desktop application created in Parsons MSDV Major Studio in collaboration with the Metropolitan Museum of Art in New York, NY.
 
-Advisors:
-Instructor, Parsons: Richard The
-General Manager of Collection Information, MET: Jennie Choi
+Advisors:<br>
+Instructor, Parsons: Richard The<br>
+General Manager of Collection Information, MET: Jennie Choi<br>
 
 ## Summary
 
