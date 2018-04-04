@@ -44,34 +44,6 @@ function setup(){
 
 	};
 
-// function scrollStateSafari() {
-
-// 	if($(window).scrollTop() + $(window).height() > 1000) {
-//        $('input:not(:checked').parent().css("display","none");
-// 		   $("input:checked").css("display", "inline");
-// 		   $("label").css("marginLeft", "35%");
-// 		   $("label" ).css("fontSize", "4em");
-// 		   $("label" ).css("textAlign", "center");
-// 		   $("input:checked").css("float", "none");
-// 		   $("input:checked").css("verticalAlign", "top");
-// 		   $("input[type=radio]").css("width", "3em");
-// 		   $("input[type=radio]").css("height", "3em");
-// 		   $("input:checked").css("fontSize", "0.5em");
-//    		} else {
-//    			$("input:checked").css("display", "inline")
-// 			$("label").css("marginLeft", "0%");
-// 			$("label" ).css("textAlign", "none");
-// 		    $("input:checked").css("float", "right");
-// 		    $("input[type=radio]").css("width", "2em");
-// 		    $("input[type=radio]").css("height", "2em");
-// 		    $("input:checked").css("fontSize", "11px");
-// 			// $('input:not(:checked').parent().show();
-// 			$('input:not(:checked').parent().css("display","inline-block");
-// 			$("label").css("fontSize", "1.5em");
-//    };
-
-// }
-
 // Input item appearance changes on scroll down/up
 function scrollState() {
 
@@ -81,7 +53,7 @@ function scrollState() {
 
 	if (window.pageYOffset >= elmnt.offsetHeight) { 
 		   // $('input:not(:checked').parent().hide();
-		   $('input:not(:checked').parent().css("display","none");
+		   $("input:not(:checked").parent().css("display","none");
 		   $("input:checked").css("display", "inline");
 		   $("label").css("marginLeft", "35%");
 		   $("label" ).css("fontSize", "4em");
@@ -100,7 +72,7 @@ function scrollState() {
 		    $("input[type=radio]").css("height", "2em");
 		    $("input:checked").css("fontSize", "11px");
 			// $('input:not(:checked').parent().show();
-			$('input:not(:checked').parent().css("display","inline-block");
+			$("input:not(:checked").parent().css("display","inline-block");
 			$("label").css("fontSize", "1.5em");
 
 	};
