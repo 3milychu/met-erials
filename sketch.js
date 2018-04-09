@@ -694,7 +694,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate = d3.select(".overlay").selectAll("#overlay1")
@@ -772,7 +772,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40)})
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "")})
 	        .exit();
 
 	var displayDate2 = d3.select(".overlay2").selectAll("#overlay2")
@@ -850,7 +850,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate3 = d3.select(".overlay3").selectAll("#overlay3")
@@ -928,7 +928,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "")})
 	        .exit();
 
 	var displayDate4 = d3.select(".overlay4").selectAll("#overlay4")
@@ -960,7 +960,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[3].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay4").selectAll("#overlay4")
@@ -1006,7 +1006,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate5 = d3.select(".overlay5").selectAll("#overlay5")
@@ -1038,7 +1038,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[4].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay5").selectAll("#overlay5")
@@ -1084,7 +1084,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate6 = d3.select(".overlay6").selectAll("#overlay6")
@@ -1116,7 +1116,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[5].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay6").selectAll("#overlay6")
@@ -1162,7 +1162,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate7 = d3.select(".overlay7").selectAll("#overlay7")
@@ -1194,7 +1194,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[6].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay7").selectAll("#overlay7")
@@ -1240,7 +1240,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate8 = d3.select(".overlay8").selectAll("#overlay8")
@@ -1272,7 +1272,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[7].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay8").selectAll("#overlay8")
@@ -1318,7 +1318,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate9 = d3.select(".overlay9").selectAll("#overlay9")
@@ -1350,7 +1350,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[8].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay9").selectAll("#overlay9")
@@ -1396,7 +1396,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectTitle")
-	        .text(function(d) { return d.Title.substring(0,40) })
+	        .text(function(d) { return d.Title.substring(0,40).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayDate10 = d3.select(".overlay10").selectAll("#overlay10")
@@ -1428,7 +1428,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[9].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay10").selectAll("#overlay10")
