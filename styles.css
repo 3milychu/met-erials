@@ -107,6 +107,7 @@ a {
 }
 
 #title {
+    display:none;
 	margin:auto;
 	padding-top:2%;
 	padding-bottom:2%;
@@ -207,10 +208,6 @@ input[type="image"]{
 
 input[type="image"]:focus{
   opacity:1;
-}
-
-input[type="image"]:checked {
-    opacity:1;
 }
 
 input[type="radio"] {
@@ -797,6 +794,10 @@ text.label{
     font-size:0px;
 }
 
+#top {
+    display:none;
+}
+
 #top1{
     width:33.33%;
     height:300px;
@@ -1053,6 +1054,9 @@ text.label{
     cursor:pointer;
 }
 
+#arrow {
+    display:none;
+}
 
 #section-one {
     margin-bottom:2%;

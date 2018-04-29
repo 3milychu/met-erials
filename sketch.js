@@ -28,9 +28,9 @@ var repImg6;
 
 function setup(){
 
-		document.getElementById("title").style.display="none";
-		document.getElementById("top").style.display="none";
-		document.getElementById("arrow").style.display="none";
+		// document.getElementById("title").style.display="none";
+		// document.getElementById("top").style.display="none";
+		// document.getElementById("arrow").style.display="none";
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		document.getElementById("mobile").style.display="inline";
@@ -214,74 +214,10 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				  	.entries(goldData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
-  				// Data for "wood and silk" selection
-			   woodSilkData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasSilk == 1
-			    	});
-
-			   woodSilkDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodSilkData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-				// Data for "wood and ink" selection
-			   woodInkData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasInk == 1
-			    	});
-
-			   woodInkDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodInkData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-				// Data for "wood and silver" selection
-			   woodSilverData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasSilver == 1
-			    	});
-
-			   woodSilverDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodSilverData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-				
 				change(allData);
-
-
-				// Data for "wood and glass" selection
-			   woodGlassData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasGlass == 1
-			    	});
-
-			   woodGlassDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodGlassData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-				  	// Data for "wood and steel" selection
-			   woodSteelData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasSteel == 1
-			    	});
-
-			   woodSteelDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodSteelData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-				  	// Data for "wood and gold" selection
-			   woodGoldData = data.filter(function(d) { 
-			    	return d.hasWood == 1 & d.hasGold == 1
-			    	});
-
-			   woodGoldDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodGoldData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+				gallery(allData);
+				origins(allData);
+				d3.select("input[class=\"radio-custom\"][value=\"All\"]").property("checked", true);
 
 // Load materials upon selection in "Select Your Met.erial"
 function change(dataset) {
@@ -294,7 +230,6 @@ function change(dataset) {
 	document.getElementById("top").style.display="inline-block";
 	document.getElementById("arrow").style.display="inline";
 	
-	// window.location.href = "#top";
 // end change dataset function
 };
 
@@ -1581,7 +1516,6 @@ function origins(dataset) {
 				d3.select("input[value=\"All\"]").property("checked", true);
 			    d3.selectAll("input").on("change", selectDataset);
 			    d3.selectAll("input").on("click", selectDataset);
-			    // d3.selectAll("button").on("click", selectDataset);
 
 			    function selectDataset(){
 			        var value = this.value;
@@ -1590,28 +1524,21 @@ function origins(dataset) {
 			            change(allData);
 			            origins(allData);
 			            gallery(allData);
-			           d3.select("input[type=\"radio\"][value=\"All\"]").property("checked", true);
+			           d3.select("input[class=\"radio-custom\"][value=\"All\"]").property("checked", true);
 			        }
 			        else if (value == "Wood")
 			        {
 			            change(woodData);
 			            origins(woodData);
 			            gallery(woodData);
-			            d3.select("input[type=\"radio\"][value=\"Wood\"]").property("checked", true);
-			        }
-			        else if (value == "Wood" & value == "Silk")
-			        {
-			            change(woodSilkData);
-			            origins(woodSilkData);
-			            gallery(woodSilkData);
-
+			            d3.select("input[value=\"Wood\"]").property("checked", true);
 			        }
 			        else if (value == "Silk")
 			        {
 			            change(silkData);
 			            origins(silkData);
 			            gallery(silkData);
-			            d3.select("input[type=\"radio\"][value=\"Silk\"]").property("checked", true);
+			            d3.select("input[value=\"Silk\"]").property("checked", true);
 			        }
 			        else if (value == "Ink")
 			        {
