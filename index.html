@@ -48,10 +48,10 @@
 	<div id="title">
 
 		<!-- Name -->
-		<div class="name">
+		<div class="name" id="name">
 			<a href="#top">
 			<img id="favicon" src="assets/favicon.jpg">
-			<h1 id="meterials" style="font-weight:300;color:#333333;">Met.erials</h1>
+			<h1 id="meterials" style="font-weight:300;color:#333333;" onclick="scrollDiv();">Met.erials</h1>
 			</a>
 		</div>
 
@@ -84,7 +84,7 @@
 			<h1 class="section-header" id="section-one"><text>Choose your met.erial</text></h1>
 		</div>
 
-		<div class="container" style="width:90%;">
+		<div class="container" style="width:70%;">
 
 			<div class="met" id="met1">
 					<div class="cover" id="cover1">
@@ -159,7 +159,7 @@
 			</div>
 
 			<!-- Scroll down -->
-			<a href="#representative"><div class="down-arrow">&#x25BC;</div></a>
+			<a href="#representative"><div class="down-arrow" onclick="scrollDiv();">&#x25BC;</div></a>
 
 		</div>
 
@@ -172,11 +172,10 @@
 	<div class="micro">
 		<div class="container">
 			<h1 class="section-header" id="section-two">Representative Items</h1>
-			<div class="button" id="updateRandoms"></div>
 		</div>
 
 		<div class="container">
-			<div class="scroll-post">
+			<div class="scroll-post" id="scroll-post">
 
 			<!-- Representative Item #1 -->
 			<div class="rep" id="rep1">
@@ -314,7 +313,7 @@
 
 	<div class="container" id="arrow">
 		<!-- Scroll up-->
-		<a href="#representative"><div class="up-arrow">&#x25B2;</div></a>
+		<a href="#representative"><div class="up-arrow" onclick="scrollDiv();">&#x25B2;</div></a>
 	</div>
 
 <!-- end Target Div -->

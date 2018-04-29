@@ -24,8 +24,6 @@ var repImg4;
 var repImg5;
 var repImg6;
 
-//Sketch histogram
-
 function setup(){
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -43,6 +41,11 @@ function setup(){
 	window.onscroll = function() {scrollState()};
 
 	};
+
+function scrollDiv(){
+    var elmnt = document.getElementById("scroll-post");
+    elmnt.scrollLeft = 0;
+  }
 
 // Input item appearance changes on scroll down/up
 function scrollState() {
@@ -66,6 +69,7 @@ function scrollState() {
 		   $("input[type=radio]").css("width", "3em");
 		   $("input[type=radio]").css("height", "3em");
 		   $("input[type=radio]:checked").css("fontSize", "0.5em");
+		   $("#name").css("paddingTop", "2%");
 	} else  {
 			$("input[type=radio]:checked").css("visibility", "hidden")
 			$("input[type=radio]:checked").css("display", "inline")
@@ -81,6 +85,7 @@ function scrollState() {
 			$("input[type=radio]:not(:checked").parent().css("display","inline-block");
 			$("label").css("fontSize", "1.5em");
 			$("label").css("visibility", "hidden");
+			$("#name").css("paddingTop", "1%");
 
 	};
 };
