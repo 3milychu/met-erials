@@ -28,10 +28,6 @@ var repImg6;
 
 function setup(){
 
-		// document.getElementById("title").style.display="none";
-		// document.getElementById("top").style.display="none";
-		// document.getElementById("arrow").style.display="none";
-
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		document.getElementById("mobile").style.display="inline";
 		document.getElementById("title").style.display="none";

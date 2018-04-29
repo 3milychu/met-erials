@@ -59,7 +59,7 @@ a {
 .loadingMessage h1 {
     font-size:2em;
     display:block;
-    animation: pulse 1s ease-in infinite;
+    animation: pulse 2s ease-in infinite;
 }
 
 /*Mobile Message*/
