@@ -217,7 +217,8 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				change(allData);
 				gallery(allData);
 				origins(allData);
-				d3.select("input[class=\"radio-custom\"][value=\"All\"]").property("checked", true);
+				d3.select("input[value=\"All\"]").property("checked", true);
+				showTile();
 
 // Load materials upon selection in "Select Your Met.erial"
 function change(dataset) {
@@ -229,6 +230,33 @@ function change(dataset) {
 	document.getElementById("title").style.display="inline";
 	document.getElementById("top").style.display="inline-block";
 	document.getElementById("arrow").style.display="inline";
+
+	if (dataset == woodData){
+		name = "What's made out of Wood at the MET?";
+	} else if (dataset == silkData) {
+		name = "What's made out of Silk at the MET?";
+	} else if (dataset == inkData) {
+		name = "What's made out of Ink at the MET?";
+	} else if (dataset == silverData) {
+		name = "What's made out of Silver at the MET?";
+	} else if (dataset == glassData) {
+		name = "What's made out of Glass at the MET?";
+	} else if (dataset == steelData) {
+		name = "What's made out of Steel at the MET?";
+	} else if (dataset == goldData) {
+		name = "What's made out of Gold at the MET?";
+	} else if (dataset == allData) {
+		name = "What's made out of the top 8 materials found in the MET?";
+	};
+
+	d3.select(".section-header").selectAll("text").remove()
+
+	var prompt = d3.select(".section-header").selectAll("#section-one")
+		 	.data(dataset.filter(function (d, i) { return i === 0;}))
+	        .enter()
+	        .append("text")
+	        .text(name)
+	        .exit();
 	
 // end change dataset function
 };
