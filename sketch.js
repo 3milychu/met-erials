@@ -28,6 +28,10 @@ var repImg6;
 
 function setup(){
 
+		document.getElementById("title").style.display="none";
+		document.getElementById("top").style.display="none";
+		document.getElementById("arrow").style.display="none";
+
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		document.getElementById("mobile").style.display="inline";
 		document.getElementById("title").style.display="none";
@@ -53,18 +57,23 @@ function scrollState() {
 
 	if (window.pageYOffset >= elmnt.offsetHeight) { 
 		   // $('input:not(:checked').parent().hide();
-		   $("input:not(:checked").parent().css("display","none");
-		   $("input:checked").css("display", "inline");
+		   $("input[type=radio]:not(:checked").parent().css("display","none");
+		   $("input[type=radio]:checked").css("display", "inline");
+		   $("input[type=radio]:checked").css("visibility", "visible");
+		   $("label").css("visibility", "visible");
+		   $("label").css("color", "black");
 		   $("label").css("marginLeft", "35%");
 		   $("label" ).css("fontSize", "4em");
 		   $("label" ).css("textAlign", "center");
-		   $("input:checked").css("float", "none");
-		   $("input:checked").css("verticalAlign", "top");
+		   $("input[type=radio]:checked").css("float", "none");
+		   $("input[type=radio]:checked").css("verticalAlign", "top");
 		   $("input[type=radio]").css("width", "3em");
 		   $("input[type=radio]").css("height", "3em");
-		   $("input:checked").css("fontSize", "0.5em");
+		   $("input[type=radio]:checked").css("fontSize", "0.5em");
 	} else  {
-			$("input:checked").css("display", "inline")
+			$("input[type=radio]:checked").css("visibility", "hidden")
+			$("input[type=radio]:checked").css("display", "inline")
+			$("label").css("color", "white");
 			$("label").css("marginLeft", "0%");
 			$("label" ).css("textAlign", "none");
 		    $("input:checked").css("float", "right");
@@ -72,8 +81,10 @@ function scrollState() {
 		    $("input[type=radio]").css("height", "2em");
 		    $("input:checked").css("fontSize", "11px");
 			// $('input:not(:checked').parent().show();
-			$("input:not(:checked").parent().css("display","inline-block");
+			$("input[type=radio]:not(:checked").parent().css("visibility","hidden");
+			$("input[type=radio]:not(:checked").parent().css("display","inline-block");
 			$("label").css("fontSize", "1.5em");
+			$("label").css("visibility", "hidden");
 
 	};
 };
@@ -148,7 +159,7 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 
 			    // Data for "ink" selection
 			   inkData = data.filter(function(d) { 
-			    	return d.hasInk == 1
+			    	return (d.hasInk == 1) & (d.isPublic === "TRUE") & (d.URL != "NA")
 			    	});
 
 			   inkDataUse = d3.nest()
@@ -235,6 +246,7 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				  	.rollup(function(v) { return v.length; })
 				  	.entries(woodSilverData)
 				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+				
 				change(allData);
 
 
@@ -277,119 +289,10 @@ function change(dataset) {
 	var name;
 	var totalRows = dataset.length;
 
-	if (dataset == woodData){
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/wood.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == silkData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/silk.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == inkData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/ink.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == silverData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/silver.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == glassData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/glass.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == steelData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/steel.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == goldData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/gold.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	} else if (dataset == allData) {
-		d3.select(".cover").selectAll("img").remove();
-
-		var displayMet= d3.select(".cover").selectAll("#cover1")
-			.data(dataset.filter(function (d, i) { return i === 0;}))
-	        .enter()
-	        .append('img')
-	        .style("width","100%")
-	        .style("height","100%")
-	        .attr("src","assets/all.jpg")
-	       	.style("background-position","center center")
-	        .style("background-size","30%")
-	        .style("position","relative")
-	        .exit();
-	};
+	document.getElementById("loading").style.display="none";
+	document.getElementById("title").style.display="inline";
+	document.getElementById("top").style.display="inline-block";
+	document.getElementById("arrow").style.display="inline";
 	
 	// window.location.href = "#top";
 // end change dataset function
@@ -644,9 +547,9 @@ function origins(dataset) {
 	repImg2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[1].key });
 	// console.log(repImg2);
 	repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
-	// console.log(repImg3);
+	console.log(repImg3);
 	repImg4 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[3].key });
-	// console.log(repImg4);
+	console.log(repImg4);
 	repImg5 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[4].key });
 	// console.log(repImg5);
 	repImg6 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[5].key });
@@ -710,7 +613,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,30)})
 	        .exit();
 
 	var displayCulture = d3.select(".overlay").selectAll("#overlay1")
@@ -720,6 +623,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay").selectAll("#overlay1")
+        .data(repImg1.filter(function (d, i) { return i === img1random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject= d3.select(".overlay").selectAll("#overlay1")
 	        .data(repImg1.filter(function (d, i) { return i === img1random;}))
@@ -799,6 +710,14 @@ function origins(dataset) {
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
 
+	var displayMedium= d3.select(".overlay2").selectAll("#overlay2")
+        .data(repImg2.filter(function (d, i) { return i === img2random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
+
 	var displayObject2= d3.select(".overlay2").selectAll("#overlay2")
 	        .data(repImg2.filter(function (d, i) { return i === img2random;}))
 	        .enter()
@@ -876,6 +795,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay3").selectAll("#overlay3")
+        .data(repImg3.filter(function (d, i) { return i === img3random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject3= d3.select(".overlay3").selectAll("#overlay3")
 	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
@@ -955,6 +882,14 @@ function origins(dataset) {
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
 
+	var displayMedium= d3.select(".overlay4").selectAll("#overlay4")
+        .data(repImg4.filter(function (d, i) { return i === img4random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
+
 	var displayObject4= d3.select(".overlay4").selectAll("#overlay4")
 	        .data(repImg4.filter(function (d, i) { return i === img4random;}))
 	        .enter()
@@ -1032,6 +967,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay5").selectAll("#overlay5")
+        .data(repImg5.filter(function (d, i) { return i === img5random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject5= d3.select(".overlay5").selectAll("#overlay5")
 	        .data(repImg5.filter(function (d, i) { return i === img5random;}))
@@ -1111,6 +1054,14 @@ function origins(dataset) {
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
 
+	var displayMedium= d3.select(".overlay6").selectAll("#overlay6")
+        .data(repImg6.filter(function (d, i) { return i === img6random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
+
 	var displayObject6= d3.select(".overlay6").selectAll("#overlay6")
 	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
 	        .enter()
@@ -1188,6 +1139,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay7").selectAll("#overlay7")
+        .data(repImg7.filter(function (d, i) { return i === img7random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject7= d3.select(".overlay7").selectAll("#overlay7")
 	        .data(repImg7.filter(function (d, i) { return i === img7random;}))
@@ -1267,6 +1226,14 @@ function origins(dataset) {
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
 
+	var displayMedium= d3.select(".overlay8").selectAll("#overlay8")
+        .data(repImg8.filter(function (d, i) { return i === img8random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
+
 	var displayObject8= d3.select(".overlay8").selectAll("#overlay8")
 	        .data(repImg8.filter(function (d, i) { return i === img8random;}))
 	        .enter()
@@ -1285,7 +1252,7 @@ function origins(dataset) {
 	        .text("View")
 	        .exit();
 
-	// Rep Image 8
+	// Rep Image 9
 
 	var img9random = Math.floor((Math.random() * repImg9.length) + 0);
 
@@ -1344,6 +1311,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay9").selectAll("#overlay9")
+        .data(repImg9.filter(function (d, i) { return i === img9random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject9= d3.select(".overlay9").selectAll("#overlay9")
 	        .data(repImg9.filter(function (d, i) { return i === img9random;}))
@@ -1422,6 +1397,14 @@ function origins(dataset) {
 	        .attr("id", "where")
 	        .text(function(d) { return "Culture: " + d.Culture })
 	        .exit();
+
+	var displayMedium= d3.select(".overlay10").selectAll("#overlay10")
+        .data(repImg10.filter(function (d, i) { return i === img10random;}))
+        .enter()
+        .append("text")
+        .attr("id", "objectMedium")
+        .text(function(d) {return "Medium: " + d.Medium})
+        .exit();
 
 	var displayObject10= d3.select(".overlay10").selectAll("#overlay10")
 	        .data(repImg10.filter(function (d, i) { return i === img10random;}))
@@ -1589,26 +1572,13 @@ function origins(dataset) {
 	        .attr("id", "dept3-name")
 	        .text(function(d) { return d.key })
 	        .exit();
-
-	// d3.select(".button").selectAll("button").remove();
-
-	// d3.select(".button").selectAll("#updateRandoms")
- //   		.data(dataset.filter(function (d, i) { return i === 0}))
- //   		.enter()
- //   		.append("button")
- //   		.attr("value",name)
- //   		.text("Shuffle")
- //   		.exit()
-  
-    // end update gallery function
     };
 
     
 
 
 				// change dataset to selected dataset
-				d3.select("input[value=\"total\"]").property("checked", false);
-
+				d3.select("input[value=\"All\"]").property("checked", true);
 			    d3.selectAll("input").on("change", selectDataset);
 			    d3.selectAll("input").on("click", selectDataset);
 			    // d3.selectAll("button").on("click", selectDataset);
@@ -1620,54 +1590,63 @@ function origins(dataset) {
 			            change(allData);
 			            origins(allData);
 			            gallery(allData);
+			           d3.select("input[type=\"radio\"][value=\"All\"]").property("checked", true);
 			        }
 			        else if (value == "Wood")
 			        {
 			            change(woodData);
 			            origins(woodData);
 			            gallery(woodData);
+			            d3.select("input[type=\"radio\"][value=\"Wood\"]").property("checked", true);
 			        }
 			        else if (value == "Wood" & value == "Silk")
 			        {
 			            change(woodSilkData);
 			            origins(woodSilkData);
 			            gallery(woodSilkData);
+
 			        }
 			        else if (value == "Silk")
 			        {
 			            change(silkData);
 			            origins(silkData);
 			            gallery(silkData);
+			            d3.select("input[type=\"radio\"][value=\"Silk\"]").property("checked", true);
 			        }
 			        else if (value == "Ink")
 			        {
 			            change(inkData);
 			            origins(inkData);
 			            gallery(inkData);
+			            d3.select("input[type=\"radio\"][value=\"Ink\"]").property("checked", true);
 			        }
 			        else if (value == "Silver")
 			        {
 			            change(silverData);
 			            origins(silverData);
 			            gallery(silverData);
+			            d3.select("input[type=\"radio\"][value=\"Silver\"]").property("checked", true);
 			        }
 			        else if (value == "Glass")
 			        {
 			            change(glassData);
 			            origins(glassData);
 			            gallery(glassData);
+			            d3.select("input[type=\"radio\"][value=\"Glass\"]").property("checked", true);
 			        }
 			        else if (value == "Steel")
 			        {
 			            change(steelData);
 			            origins(steelData);
 			            gallery(steelData);
+			            d3.select("input[type=\"radio\"][value=\"Steel\"]").property("checked", true);
 			        }
 			        else if (value == "Gold")
 			        {
 			            change(goldData);
 			            origins(goldData);
 			            gallery(goldData);
+			            d3.select("input[type=\"radio\"][value=\"Gold\"]").property("checked", true);
 			        }
 			        
 			    }

@@ -34,6 +34,34 @@ a {
     -webkit-overflow-scrolling: touch;
 }
 
+/*Loading*/
+
+/*Pulse animation*/
+@keyframes pulse {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#loading{
+    width:100%;
+    height:100%;
+}
+
+.loadingMessage {
+    margin:auto;
+    text-align:center;
+    vertical-align:middle;
+    padding:10%;
+    display:block;
+    margin-top:10%;
+}
+
+.loadingMessage h1 {
+    font-size:2em;
+    display:block;
+    animation: pulse 1s ease-in infinite;
+}
+
 /*Mobile Message*/
 
 .mobileDisplay{
@@ -80,7 +108,6 @@ a {
 
 #title {
 	margin:auto;
-/*	text-align:center;*/
 	padding-top:2%;
 	padding-bottom:2%;
     position:fixed;
@@ -157,6 +184,7 @@ label {
     font-size:1.5em;
     line-height:1.2em;
     padding-right:2%;
+    color:white;
 }
 
 form {
@@ -166,13 +194,32 @@ form {
 }
 
 /*radio boxes */
+
+
+#dataset {
+    width:100%;
+    height:100%;
+}
+
+input[type="image"]{
+  opacity:0.5;
+}
+
+input[type="image"]:focus{
+  opacity:1;
+}
+
+input[type="image"]:checked {
+    opacity:1;
+}
+
 input[type="radio"] {
  -webkit-appearance:none;/* Hides the default checkbox style */ 
  height:2em;
  width:2em;
  cursor:pointer;
  position:relative;
- -webkit-transition: .15s;
+/* -webkit-transition: .15s;*/
  border-radius:2em;
  background-color:white;
  border: 2px #3B95DB;
@@ -229,7 +276,6 @@ input[type="radio"]:hover:checked:before {
  vertical-align:text-bottom;
  float:right;
 }
-
 
 input:focus{
   outline:none;
@@ -334,10 +380,10 @@ text.label{
 }*/
 
 .met {
-    height:350px;
-    background-color:#E6E6E6;
+    height:20%;
+    background-color:none;
     display:inline-block;
-    width:25%;
+    width:20%;
 }
 
 .down-arrow {
@@ -378,6 +424,7 @@ text.label{
 .container {
     margin:auto;
     text-align:center;
+    width:100%;
 }
 
 .container-micro {
@@ -397,6 +444,19 @@ text.label{
     width:100%;
     height:100%;
     position:relative;
+}
+
+.check-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height:100%;
+    display:none;
+    transition: .5s ease;
+    background-color: #E6E6E6;
 }
 
 .overlay{
@@ -696,7 +756,7 @@ text.label{
 
 }
 
-#artistDisplayName, #where, #objectName {
+#artistDisplayName, #where, #objectName, #objectMedium {
     font-weight:400;
     font-size:1em;
     display:block;
@@ -993,6 +1053,10 @@ text.label{
     cursor:pointer;
 }
 
+
+#section-one {
+    margin-bottom:2%;
+}
 /*RESPONSIVE*/
 
 /*Monitors*/
