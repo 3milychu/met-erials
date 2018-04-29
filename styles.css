@@ -203,6 +203,7 @@ form {
 }
 
 input[type="image"]{
+  transition: .5s ease;
   opacity:0.5;
 }
 
@@ -381,6 +382,7 @@ text.label{
     background-color:none;
     display:inline-block;
     width:20%;
+    margin:1%;
 }
 
 .down-arrow {

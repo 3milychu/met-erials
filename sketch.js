@@ -218,7 +218,9 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				gallery(allData);
 				origins(allData);
 				d3.select("input[value=\"All\"]").property("checked", true);
+				 $("input[value=\"All\"]").css("opacity", "1");
 				showTile();
+
 
 // Load materials upon selection in "Select Your Met.erial"
 function change(dataset) {
@@ -233,20 +235,28 @@ function change(dataset) {
 
 	if (dataset == woodData){
 		name = "What's made out of Wood at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == silkData) {
 		name = "What's made out of Silk at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == inkData) {
 		name = "What's made out of Ink at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == silverData) {
 		name = "What's made out of Silver at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == glassData) {
 		name = "What's made out of Glass at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == steelData) {
 		name = "What's made out of Steel at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == goldData) {
 		name = "What's made out of Gold at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == allData) {
-		name = "What's made out of the top 8 materials found in the MET?";
+		name = "What's made out of the MET's Top 8 Materials?";
+		$("input[value=\"All\"]").css("opacity", "1");
 	};
 
 	d3.select(".section-header").selectAll("text").remove()
