@@ -93,7 +93,7 @@ function scrollState() {
 // Get the data and process it by material
 function getInfo(){
 
-d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/topMediums_final.csv", function(data) {
+d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.csv", function(data) {
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
@@ -132,88 +132,59 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 			// Data for "all" selection
 			   allData = data.filter(function(d) { 
 			    	return d.hasWood == 1 | d.hasSilk == 1 | d.hasInk == 1 | d.hasSilver ==1 | d.hasGlass == 1 | d.hasSteel == 1
-			    	| d.hasGold ==1
+			    	| d.hasGold ==1 | d.hasPaper ==1 | d.hasPorcelain ==1
+			    	});
+
+
+		   		// Data for "paper" selection
+			   paperData = data.filter(function(d) { 
+			    	return d.hasPaper == 1 
+			    	});
+
+		   		// Data for "pen" selection
+			   penData = data.filter(function(d) { 
+			    	return d.hasPen == 1 
 			    	});
 
 		   		// Data for "wood" selection
 			   woodData = data.filter(function(d) { 
-			    	return d.hasWood == 1
+			    	return d.hasWood == 1 
 			    	});
-
-			   woodDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(woodData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
 			   // Data for "silk" selection
 			   silkData = data.filter(function(d) { 
-			    	return d.hasSilk == 1
+			    	return d.hasSilk == 1 
 			    	});
-
-			   silkDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(silkData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
 
 			    // Data for "ink" selection
 			   inkData = data.filter(function(d) { 
-			    	return (d.hasInk == 1) & (d.isPublic === "TRUE") & (d.URL != "NA")
+			    	return (d.hasInk == 1) & (d.URL != "NA") & (d.isPublic == "True")
 			    	});
-
-			   inkDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(inkData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
 			     // Data for "silver" selection
 			   silverData = data.filter(function(d) { 
 			    	return d.hasSilver== 1
 			    	});
 
-			   silverDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(silverData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
-
 			     // Data for "glass" selection
 			   glassData = data.filter(function(d) { 
-			    	return d.hasGlass == 1
+			    	return d.hasGlass == 1 
 			    	});
-
-			   glassDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(glassData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
 
 			     // Data for "steel" selection
 			   steelData = data.filter(function(d) { 
-			    	return d.hasSteel == 1
+			    	return d.hasSteel == 1 
 			    	});
-
-			   steelDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(steelData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
-
 
 			     // Data for "gold" selection
 			   goldData = data.filter(function(d) { 
-			    	return d.hasGold == 1
+			    	return d.hasGold == 1 
 			    	});
 
-			   goldDataUse = d3.nest()
-			   		.key(function(d) { return d.objectBeginDate; })
-				  	.rollup(function(v) { return v.length; })
-				  	.entries(goldData)
-				  	.sort(function(a,b) {return d3.ascending(a.key,b.key);});
+		   		// Data for "porcelain" selection
+			   porcelainData = data.filter(function(d) { 
+			    	return d.hasPorcelain == 1 
+			    	});
 
 				change(allData);
 				gallery(allData);
@@ -221,6 +192,8 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				d3.select("input[value=\"All\"]").property("checked", true);
 				 $("input[value=\"All\"]").css("opacity", "1");
 				showTile();
+
+
 
 
 // Load materials upon selection in "Select Your Met.erial"
@@ -236,6 +209,12 @@ function change(dataset) {
 
 	if (dataset == woodData){
 		name = "What's made out of Wood at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
+	} else if (dataset == paperData) {
+		name = "What's made out of Paper at the MET?";
+		$("input[value=\"All\"]").css("opacity", "0.5");
+	} else if (dataset == porcelainData) {
+		name = "What's made out of Porcelain at the MET?";
 		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == silkData) {
 		name = "What's made out of Silk at the MET?";
@@ -481,6 +460,12 @@ function origins(dataset) {
 	if (dataset == woodData){
 		name = "Wood";
 		call = "woodData"
+	} else if (dataset == paperData) {
+		name = "Paper";
+		call = "paperData"
+	} else if (dataset == penData) {
+		name = "Pen";
+		call = "penData"
 	} else if (dataset == silkData) {
 		name = "Silk";
 		call = "silkData"
@@ -499,6 +484,9 @@ function origins(dataset) {
 	} else if (dataset == goldData) {
 		name = "Gold";
 		call = "goldData"
+	} else if (dataset == porcelainData) {
+		name = "Porcelain";
+		call = "porcelainData"
 	} else if (dataset == allData) {
 		name = "All";
 		call = "allData"
@@ -516,25 +504,25 @@ function origins(dataset) {
 		  		| i === 9;});
 		console.log(objectNames);
 
-	repImg1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[0].key });
-	// console.log(repImg1);
-	repImg2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[1].key });
-	// console.log(repImg2);
-	repImg3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[2].key });
-	console.log(repImg3);
-	repImg4 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[3].key });
-	console.log(repImg4);
-	repImg5 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[4].key });
-	// console.log(repImg5);
-	repImg6 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[5].key });
-	// console.log(repImg6);
-	repImg7 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[6].key });
-	// console.log(repImg7);
-	repImg8 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[7].key });
-	// console.log(repImg8);
-	repImg9 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[8].key });
-	// console.log(repImg9);
-	repImg10 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.objectName == objectNames[9].key });
+	repImg1 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[0].key });
+
+	repImg2 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[1].key });
+
+	repImg3 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[2].key });
+
+	repImg4 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[3].key });
+
+	repImg5 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[4].key });
+
+	repImg6 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[5].key });
+
+	repImg7 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[6].key });
+
+	repImg8 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[7].key });
+
+	repImg9 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[8].key });
+
+	repImg10 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[9].key });
 	// console.log(repImg10);
 
 	// Rep Image 1
@@ -1037,7 +1025,7 @@ function origins(dataset) {
         .exit();
 
 	var displayObject6= d3.select(".overlay6").selectAll("#overlay6")
-	        .data(repImg3.filter(function (d, i) { return i === img3random;}))
+	        .data(repImg6.filter(function (d, i) { return i === img6random;}))
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
@@ -1421,11 +1409,11 @@ function origins(dataset) {
 	  	.sort(function(a,b) {return d3.descending(a.value,b.value);});
 	console.log(departments);
 
-	var top1 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.Department == departments[0].key });
+	var top1 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.Department == departments[0].key });
 	// console.log(repImg1);
-	var top2 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.Department== departments[1].key });
+	var top2 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.Department== departments[1].key });
 	// console.log(repImg2);
-	var top3 = dataset.filter(function(d){return d.isPublic === "TRUE" & d.URL != "NA" & d.Department == departments[2].key });
+	var top3 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.Department == departments[2].key });
 	// console.log(repImg3);
 
 	d3.select(".departments1").selectAll("img").remove();
@@ -1565,6 +1553,20 @@ function origins(dataset) {
 			            gallery(allData);
 			           d3.select("input[class=\"radio-custom\"][value=\"All\"]").property("checked", true);
 			        }
+			        else if (value == "Paper")
+			        {
+			            change(paperData);
+			            origins(paperData);
+			            gallery(paperData);
+			            d3.select("input[value=\"Paper\"]").property("checked", true);
+			        }
+			        else if (value == "Pen")
+			        {
+			            change(penData);
+			            origins(penData);
+			            gallery(penData);
+			            d3.select("input[value=\"Pen\"]").property("checked", true);
+			        }
 			        else if (value == "Wood")
 			        {
 			            change(woodData);
@@ -1613,6 +1615,13 @@ function origins(dataset) {
 			            origins(goldData);
 			            gallery(goldData);
 			            d3.select("input[type=\"radio\"][value=\"Gold\"]").property("checked", true);
+			        }
+			         else if (value == "Porcelain")
+			        {
+			            change(porcelainData);
+			            origins(porcelainData);
+			            gallery(porcelainData);
+			            d3.select("input[value=\"Porcelain\"]").property("checked", true);
 			        }
 			        
 			    }
