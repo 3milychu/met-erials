@@ -235,7 +235,7 @@ function change(dataset) {
 		name = "What's made out of Gold at the MET?";
 		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == allData) {
-		name = "What's made out of the MET's Top 8 Materials?";
+		name = "What's made out of the MET's Top Materials?";
 		$("input[value=\"All\"]").css("opacity", "1");
 	};
 
