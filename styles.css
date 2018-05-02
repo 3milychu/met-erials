@@ -1087,6 +1087,13 @@ text.label{
         }
     }
 
+ @media screen and (min-width:1600px) {
+    .rep {
+        width:20%;
+        height:350px;
+    }
+ }
+
  @media screen and (max-width:1000px) {
         #section-one, #section-two{
             margin-top:15%;
