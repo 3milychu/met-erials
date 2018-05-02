@@ -11,7 +11,7 @@ var woodData;
 var silkData;
 var inkData;
 var glassData;
-var steelData;
+var albumenData;
 var silverData;
 var goldData;
 var woodSilkData;
@@ -131,7 +131,7 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 
 			// Data for "all" selection
 			   allData = data.filter(function(d) { 
-			    	return d.hasWood == 1 | d.hasSilk == 1 | d.hasInk == 1 | d.hasSilver ==1 | d.hasGlass == 1 | d.hasSteel == 1
+			    	return d.hasWood == 1 | d.hasSilk == 1 | d.hasInk == 1 | d.hasSilver ==1 | d.hasGlass == 1 | d.hasAlbumen == 1
 			    	| d.hasGold ==1 | d.hasPaper ==1 | d.hasPorcelain ==1
 			    	});
 
@@ -171,9 +171,9 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 			    	return d.hasGlass == 1 
 			    	});
 
-			     // Data for "steel" selection
-			   steelData = data.filter(function(d) { 
-			    	return d.hasSteel == 1 
+			     // Data for "albumen" selection
+			   albumenData = data.filter(function(d) { 
+			    	return d.hasAlbumen == 1 
 			    	});
 
 			     // Data for "gold" selection
@@ -228,8 +228,8 @@ function change(dataset) {
 	} else if (dataset == glassData) {
 		name = "What's made out of Glass at the MET?";
 		$("input[value=\"All\"]").css("opacity", "0.5");
-	} else if (dataset == steelData) {
-		name = "What's made out of Steel at the MET?";
+	} else if (dataset == albumenData) {
+		name = "What's made out of Albumen at the MET?";
 		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == goldData) {
 		name = "What's made out of Gold at the MET?";
@@ -478,9 +478,9 @@ function origins(dataset) {
 	} else if (dataset == glassData) {
 		name = "Glass";
 		call = "glassData"
-	} else if (dataset == steelData) {
-		name = "Steel";
-		call = "steelData"
+	} else if (dataset == albumenData) {
+		name = "Albumen";
+		call = "albumenData"
 	} else if (dataset == goldData) {
 		name = "Gold";
 		call = "goldData"
@@ -575,7 +575,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,30)})
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,30).replace(/[^ -~]+/g, "")})
 	        .exit();
 
 	var displayCulture = d3.select(".overlay").selectAll("#overlay1")
@@ -583,7 +583,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay").selectAll("#overlay1")
@@ -591,7 +591,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject= d3.select(".overlay").selectAll("#overlay1")
@@ -599,7 +599,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[0].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[0].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay").selectAll("#overlay1")
@@ -661,7 +661,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture2 = d3.select(".overlay2").selectAll("#overlay2")
@@ -669,7 +669,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay2").selectAll("#overlay2")
@@ -677,7 +677,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject2= d3.select(".overlay2").selectAll("#overlay2")
@@ -685,7 +685,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[1].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[1].value) + ")"})
 	        .exit();
 
 	var displayLink2= d3.select(".overlay2").selectAll("#overlay2")
@@ -747,7 +747,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture3 = d3.select(".overlay3").selectAll("#overlay3")
@@ -755,7 +755,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay3").selectAll("#overlay3")
@@ -763,7 +763,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject3= d3.select(".overlay3").selectAll("#overlay3")
@@ -771,7 +771,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[2].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[2].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay3").selectAll("#overlay3")
@@ -833,7 +833,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture4 = d3.select(".overlay4").selectAll("#overlay4")
@@ -841,7 +841,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay4").selectAll("#overlay4")
@@ -849,7 +849,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject4= d3.select(".overlay4").selectAll("#overlay4")
@@ -857,7 +857,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[3].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[3].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay4").selectAll("#overlay4")
@@ -919,7 +919,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture5 = d3.select(".overlay5").selectAll("#overlay5")
@@ -927,7 +927,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay5").selectAll("#overlay5")
@@ -935,7 +935,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject5= d3.select(".overlay5").selectAll("#overlay5")
@@ -943,7 +943,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[4].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[4].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay5").selectAll("#overlay5")
@@ -1005,7 +1005,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture6 = d3.select(".overlay6").selectAll("#overlay6")
@@ -1013,7 +1013,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay6").selectAll("#overlay6")
@@ -1021,7 +1021,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject6= d3.select(".overlay6").selectAll("#overlay6")
@@ -1029,7 +1029,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[5].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[5].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay6").selectAll("#overlay6")
@@ -1091,7 +1091,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture7 = d3.select(".overlay7").selectAll("#overlay7")
@@ -1099,7 +1099,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay7").selectAll("#overlay7")
@@ -1107,7 +1107,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject7= d3.select(".overlay7").selectAll("#overlay7")
@@ -1115,7 +1115,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[6].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[6].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay7").selectAll("#overlay7")
@@ -1177,7 +1177,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture8 = d3.select(".overlay8").selectAll("#overlay8")
@@ -1185,7 +1185,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay8").selectAll("#overlay8")
@@ -1193,7 +1193,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject8= d3.select(".overlay8").selectAll("#overlay8")
@@ -1201,7 +1201,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[7].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[7].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay8").selectAll("#overlay8")
@@ -1263,7 +1263,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture9 = d3.select(".overlay9").selectAll("#overlay9")
@@ -1271,7 +1271,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay9").selectAll("#overlay9")
@@ -1279,7 +1279,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject9= d3.select(".overlay9").selectAll("#overlay9")
@@ -1287,7 +1287,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[8].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[8].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay9").selectAll("#overlay9")
@@ -1349,7 +1349,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "artistDisplayName")
-	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20) })
+	        .text(function(d) { return "Artist: " + d.artistDisplayName.substring(0,20).replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayCulture10 = d3.select(".overlay10").selectAll("#overlay10")
@@ -1357,7 +1357,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "where")
-	        .text(function(d) { return "Culture: " + d.Culture })
+	        .text(function(d) { return "Culture: " + d.Culture.replace(/[^ -~]+/g, "") })
 	        .exit();
 
 	var displayMedium= d3.select(".overlay10").selectAll("#overlay10")
@@ -1365,7 +1365,7 @@ function origins(dataset) {
         .enter()
         .append("text")
         .attr("id", "objectMedium")
-        .text(function(d) {return "Medium: " + d.Medium})
+        .text(function(d) {return "Medium: " + d.Medium.replace(/[^ -~]+/g, "")})
         .exit();
 
 	var displayObject10= d3.select(".overlay10").selectAll("#overlay10")
@@ -1373,7 +1373,7 @@ function origins(dataset) {
 	        .enter()
 	        .append("text")
 	        .attr("id", "objectName")
-	        .text(function(d) {return "Family: " + d.objectName +"s (of " + formatThousands(objectNames[9].value) + ")"})
+	        .text(function(d) {return "Family: " + d.objectName.replace(/[^ -~]+/g, "") +"s (of " + formatThousands(objectNames[9].value) + ")"})
 	        .exit();
 
 	var displayLink= d3.select(".overlay10").selectAll("#overlay10")
@@ -1602,12 +1602,12 @@ function origins(dataset) {
 			            gallery(glassData);
 			            d3.select("input[type=\"radio\"][value=\"Glass\"]").property("checked", true);
 			        }
-			        else if (value == "Steel")
+			        else if (value == "Albumen")
 			        {
-			            change(steelData);
-			            origins(steelData);
-			            gallery(steelData);
-			            d3.select("input[type=\"radio\"][value=\"Steel\"]").property("checked", true);
+			            change(albumenData);
+			            origins(albumenData);
+			            gallery(albumenData);
+			            d3.select("input[type=\"radio\"][value=\"Albumen\"]").property("checked", true);
 			        }
 			        else if (value == "Gold")
 			        {
