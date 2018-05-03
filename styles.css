@@ -1097,6 +1097,10 @@ text.label{
  }
 
  @media screen and (max-width:1000px) {
+        #favicon {
+            width:50%;
+            padding:0% 2% 8% 50%;
+        }
         #section-one, #section-two{
             margin-top:15%;
             margin-bottom:5%;
@@ -1108,14 +1112,13 @@ text.label{
             height:auto;
             background-color:#E6E6E6;
             display:inline-block;
-            width:50%;
+            width:40%;
         }
         .name {
             width:10%;
             margin:auto;
             text-align:center;
-            margin-left:5%;
-            padding-top:3%;
+            padding-top:2% 0% 2% 2%;
         }
         #origins {
             margin-bottom:50%;
@@ -1124,7 +1127,7 @@ text.label{
             font-size:1.2em;
         }
         #selector {
-            width:80%;
+            width:90%;
             float:right;
             line-height:3em;
         }
@@ -1155,7 +1158,7 @@ text.label{
 
         }
         .rep {
-            height:350px;
+            height:450px;
             background-color:#E6E6E6;
             margin:0%;
             display:inline-block;
