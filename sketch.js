@@ -26,12 +26,12 @@ var repImg6;
 
 function setup(){
 
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		document.getElementById("mobile").style.display="inline";
-		document.getElementById("title").style.display="none";
-		document.getElementById("top").style.display="none";
-		document.getElementById("arrow").style.display="none";
-	};
+	// if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	// 	document.getElementById("mobile").style.display="inline";
+	// 	document.getElementById("title").style.display="none";
+	// 	document.getElementById("top").style.display="none";
+	// 	document.getElementById("arrow").style.display="none";
+	// };
 
 	noCanvas();
 
@@ -56,7 +56,7 @@ function scrollState() {
 
 	if (window.pageYOffset >= elmnt.offsetHeight) { 
 		   // $('input:not(:checked').parent().hide();
-		   $("input[type=radio]:not(:checked").parent().css("display","none");
+		   $("input[type=radio]:not(:checked)").parent().css("display","none");
 		   $("input[type=radio]:checked").css("display", "inline");
 		   $("input[type=radio]:checked").css("visibility", "visible");
 		   $("label").css("visibility", "visible");
@@ -69,7 +69,7 @@ function scrollState() {
 		   $("input[type=radio]").css("width", "3em");
 		   $("input[type=radio]").css("height", "3em");
 		   $("input[type=radio]:checked").css("fontSize", "0.5em");
-		   $("#name").css("paddingTop", "2%");
+		   $("#name").css("paddingTop", "3%");
 	} else  {
 			$("input[type=radio]:checked").css("visibility", "hidden")
 			$("input[type=radio]:checked").css("display", "inline")
@@ -81,11 +81,11 @@ function scrollState() {
 		    $("input[type=radio]").css("height", "2em");
 		    $("input:checked").css("fontSize", "11px");
 			// $('input:not(:checked').parent().show();
-			$("input[type=radio]:not(:checked").parent().css("visibility","hidden");
-			$("input[type=radio]:not(:checked").parent().css("display","inline-block");
+			$("input[type=radio]:not(:checked)").parent().css("visibility","hidden");
+			$("input[type=radio]:not(:checked)").parent().css("display","inline-block");
 			$("label").css("fontSize", "1.5em");
 			$("label").css("visibility", "hidden");
-			$("#name").css("paddingTop", "1%");
+			$("#name").css("paddingTop", "2%");
 
 	};
 };
@@ -189,8 +189,8 @@ d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/da
 				change(allData);
 				gallery(allData);
 				origins(allData);
+				$("input[type=\"image\"][src=\"assets/all.jpg\"]").css("opacity", "1");
 				d3.select("input[value=\"All\"]").property("checked", true);
-				 $("input[value=\"All\"]").css("opacity", "1");
 				showTile();
 
 
@@ -236,7 +236,7 @@ function change(dataset) {
 		$("input[value=\"All\"]").css("opacity", "0.5");
 	} else if (dataset == allData) {
 		name = "What's made out of the MET's Top Materials?";
-		$("input[value=\"All\"]").css("opacity", "1");
+		$("input[type=\"image\"][src=\"assets/all.jpg\"]").css("opacity", "1");
 	};
 
 	d3.select(".section-header").selectAll("text").remove()
