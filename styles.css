@@ -1168,7 +1168,7 @@ text.label{
             line-height:3em;
         }
         .up-arrow{
-            margin-top:50%;
+            margin-top:-50%;
         }
     }
 
