@@ -26,19 +26,16 @@ var repImg6;
 
 function setup(){
 
-	// if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-	// 	document.getElementById("mobile").style.display="inline";
-	// 	document.getElementById("title").style.display="none";
-	// 	document.getElementById("top").style.display="none";
-	// 	document.getElementById("arrow").style.display="none";
-	// };
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	window.onscroll = function() {scrollMobile()};
+	} else {
+	window.onscroll = function() {scrollDesktop()};
+	}
+	;
 
 	noCanvas();
 
 	getInfo();
-
-	// IsSafari();
-	window.onscroll = function() {scrollState()};
 
 	};
 
@@ -47,8 +44,51 @@ function scrollDiv(){
     elmnt.scrollLeft = 0;
   }
 
+ // Scroll Mobile 
+
+ function scrollMobile() {
+
+	var elmnt = document.getElementById("title");
+	var rep = elmnt.offsetTop;
+
+	if (window.pageYOffset >= elmnt.offsetHeight) { 
+		   // $('input:not(:checked').parent().hide();
+		   $("input[type=radio]:not(:checked)").parent().css("display","none");
+		   $("input[type=radio]:checked").css("display", "inline");
+		   $("input[type=radio]:checked").css("visibility", "visible");
+		   $("label").css("visibility", "visible");
+		   $("label").css("color", "black");
+		   $("label").css("marginLeft", "30%");
+		   $("label" ).css("fontSize", "4em");
+		   $("label" ).css("textAlign", "center");
+		   $("input[type=radio]:checked").css("float", "none");
+		   $("input[type=radio]:checked").css("verticalAlign", "top");
+		   $("input[type=radio]").css("width", "3em");
+		   $("input[type=radio]").css("height", "3em");
+		   $("input[type=radio]:checked").css("fontSize", "0.5em");
+		   $("#name").css("paddingTop", "10%");
+	} else  {
+			$("input[type=radio]:checked").css("visibility", "hidden")
+			$("input[type=radio]:checked").css("display", "inline")
+			$("label").css("color", "white");
+			$("label").css("marginLeft", "0%");
+			$("label" ).css("textAlign", "none");
+		    $("input:checked").css("float", "right");
+		    $("input[type=radio]").css("width", "2em");
+		    $("input[type=radio]").css("height", "2em");
+		    $("input:checked").css("fontSize", "11px");
+			// $('input:not(:checked').parent().show();
+			$("input[type=radio]:not(:checked)").parent().css("visibility","hidden");
+			$("input[type=radio]:not(:checked)").parent().css("display","inline-block");
+			$("label").css("fontSize", "1.5em");
+			$("label").css("visibility", "hidden");
+			$("#name").css("paddingTop", "15%");
+
+	};
+};
+
 // Input item appearance changes on scroll down/up
-function scrollState() {
+function scrollDesktop() {
 
 
 	var elmnt = document.getElementById("title");
@@ -61,7 +101,7 @@ function scrollState() {
 		   $("input[type=radio]:checked").css("visibility", "visible");
 		   $("label").css("visibility", "visible");
 		   $("label").css("color", "black");
-		   $("label").css("marginLeft", "35%");
+		   $("label").css("marginLeft", "30%");
 		   $("label" ).css("fontSize", "4em");
 		   $("label" ).css("textAlign", "center");
 		   $("input[type=radio]:checked").css("float", "none");
@@ -93,7 +133,7 @@ function scrollState() {
 // Get the data and process it by material
 function getInfo(){
 
-d3.csv("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.csv", function(data) {
+d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.json", function(data) {
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
