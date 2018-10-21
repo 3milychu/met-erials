@@ -38,7 +38,7 @@ function compress() {
 
 function decompress() {
 	xttp = new XMLHttpRequest();
-	xttp.open("GET", "https://github.com/3milychu/met-erials/raw/master/data/top8_compressed.json");
+	xttp.open("GET", "https://raw.githubusercontent.com/3milychu/met-erials/master/data/top8_compressed.json");
 	xttp.send();
 	xttp.onreadystatechange= function() {
 		if(this.readyState == 4 && this.status == 200){
@@ -59,7 +59,7 @@ function download(content, fileName, contentType) {
 
 
 // compress();
-// decompress();
+decompress();
 
 
 function unpack(str) {
@@ -85,7 +85,7 @@ function imageExists(url){
 }
 
 
-d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.json", function(data) {
+d3.json("https://raw.githubusercontent.com/3milychu/met-erials/master/data/top8_compressed.json", function(data) {
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
