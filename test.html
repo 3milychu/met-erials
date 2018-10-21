@@ -9,6 +9,7 @@
 	<script src="https://d3js.org/d3.v4.js"></script>
 	<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>	
 	<script src="node_modules/requirejs/require.js"></script>
+	<script src="node_modules/fast-json-parse/parse.js"></script>
 	
 
 </head>
@@ -17,8 +18,7 @@
 </body>
 <script src="node_modules/lzwcompress/lzwCompress.js"></script>
 <script>
-var parse = require('fast-json-parse');
-var fs = require('fs');
+
 var lzwCompress = window.lzwCompress;
 json_path = "data/top8.json";
 
@@ -38,7 +38,7 @@ function compress() {
 
 function decompress() {
 	xttp = new XMLHttpRequest();
-	xttp.open("GET", "data/top8_compressed.json");
+	xttp.open("GET", "https://github.com/3milychu/met-erials/raw/master/data/top8_compressed.json");
 	xttp.send();
 	xttp.onreadystatechange= function() {
 		if(this.readyState == 4 && this.status == 200){
@@ -59,7 +59,7 @@ function download(content, fileName, contentType) {
 
 
 // compress();
-decompress();
+// decompress();
 
 
 function unpack(str) {
@@ -72,6 +72,30 @@ function unpack(str) {
     return bytes;
 }
 
+function imageExists(url){
+    var image = new Image();
+    image.src = url;
+    if (!image.complete) {
+        return false;
+    }
+    else if (image.height === 0) {
+        return false;
+    }
+    return true;
+}
+
+
+d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.json", function(data) {
+	  		data.forEach(function(d) {
+	   			d.objectBeginDate = +d.objectBeginDate;
+	   			 });
+
+	  		// console.log(data);
+	  		photos = data.filter(function(d) { 
+			    	return imageExists(d.URL) == true;
+			    	});
+	  		console.log(photos);
+});
 
 </script>
 </html>

@@ -536,6 +536,18 @@ function origins(dataset) {
 	var format = d3.format(".0%");
 	var formatThousands = d3.format(",");
 
+	function imageExists(url){
+	    var image = new Image();
+	    image.src = url;
+	    if (!image.complete) {
+	        return false;
+	    }
+	    else if (image.height === 0) {
+	        return false;
+	    }
+	    return true;
+	}
+
 	objectNames = d3.nest()
 		.key(function(d) { return d.objectName; })
 		  	.rollup(function(v) { return v.length; })
@@ -583,6 +595,8 @@ function origins(dataset) {
 	        .attr("src",function(d) {return d.URL;})
 	        .attr("class", "target")
 	        .attr("id", "target1")
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
+	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
 	d3.select(".image1").selectAll("div").remove();
@@ -668,6 +682,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 	
@@ -754,6 +769,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -840,6 +856,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -926,6 +943,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -1012,6 +1030,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -1098,6 +1117,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -1184,6 +1204,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -1270,6 +1291,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
@@ -1356,6 +1378,7 @@ function origins(dataset) {
 	        .style("background-position","center")
 	        .style("background-size","30%")
 	        .attr("src",function(d) {return d.URL;})
+	        .attr("onerror", "this.onerror=null;this.src='assets/refresh.jpg';")
 	        .append('a').attr('href',function(d) {return d.URL;})
 	        .exit();
 
