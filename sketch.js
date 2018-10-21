@@ -134,16 +134,17 @@ function scrollDesktop() {
 function getInfo(){
 
 d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.json", function(data) {
+	  		showTile();
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
 	   			 });
 	  			// console.log(data);
-
+	  		console.log(data);
 			var yearMin = d3.min(data, function(d) { return d.objectBeginDate; });
-			console.log("The smallest year in the dataset is " + yearMin);
+			// console.log("The smallest year in the dataset is " + yearMin);
 
 			var yearMax = d3.max(data, function(d) { return d.objectBeginDate; });
-			console.log("The largest year in the dataset is " + yearMax);
+			// console.log("The largest year in the dataset is " + yearMax);
 	  		
 	  		// key value pairs with key:"year"; value:"object count"
 
@@ -231,7 +232,7 @@ d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/d
 				origins(allData);
 				$("input[type=\"image\"][src=\"assets/all.jpg\"]").css("opacity", "1");
 				d3.select("input[value=\"All\"]").property("checked", true);
-				showTile();
+				
 
 
 
@@ -542,7 +543,7 @@ function origins(dataset) {
 		  	.sort(function(a,b) {return d3.descending(a.value,b.value);})
 		  	.filter(function (d, i) { return i === 0 | i === 1 | i === 2 | i === 3 | i === 4 | i === 5 | i === 6 | i === 7 | i === 8
 		  		| i === 9;});
-		console.log(objectNames);
+		// console.log(objectNames);
 
 	repImg1 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.objectName == objectNames[0].key });
 
@@ -1447,7 +1448,7 @@ function origins(dataset) {
 	  	.rollup(function(v) { return v.length; })
 	  	.entries(dataset)
 	  	.sort(function(a,b) {return d3.descending(a.value,b.value);});
-	console.log(departments);
+	// console.log(departments);
 
 	var top1 = dataset.filter(function(d){return d.isPublic === "True" & d.URL != "NA" & d.Department == departments[0].key });
 	// console.log(repImg1);

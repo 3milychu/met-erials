@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Lite Json</title>
+	<meta charset="UTF-8">
+	<script src="node_modules/jszip/dist/jszip.min.js"></script>
+	<script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
+	<script src="node_modules/jszip-utils/dist/jszip-utils.min.js"></script>
+	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>	
+	<script src="node_modules/requirejs/require.js"></script>
+	
+
+</head>
+<body>
+
+</body>
+<script src="node_modules/lzwcompress/lzwCompress.js"></script>
+<script>
+var parse = require('fast-json-parse');
+var fs = require('fs');
+var lzwCompress = window.lzwCompress;
+json_path = "data/top8.json";
+
+function compress() {
+	xttp = new XMLHttpRequest();
+	xttp.open("GET", json_path);
+	xttp.send();
+	xttp.onreadystatechange= function() {
+		if(this.readyState == 4 && this.status == 200){
+			var data = JSON.parse(this.responseText);
+			var compressed = lzwCompress.pack(data);
+			var compressed = JSON.stringify(compressed)
+			download(compressed, 'top8_compressed.json', 'utf8');
+		}
+	}
+}
+
+function decompress() {
+	xttp = new XMLHttpRequest();
+	xttp.open("GET", "data/top8_compressed.json");
+	xttp.send();
+	xttp.onreadystatechange= function() {
+		if(this.readyState == 4 && this.status == 200){
+			var data = JSON.parse(this.responseText);
+			original = lzwCompress.unpack(data);
+			console.log(original);
+		}
+	}
+}
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+
+// compress();
+decompress();
+
+
+function unpack(str) {
+    var bytes = [];
+    for(var i = 0; i < str.length; i++) {
+        var char = str.charCodeAt(i);
+        bytes.push(char >>> 8);
+        bytes.push(char & 0xFF);
+    }
+    return bytes;
+}
+
+
+</script>
+</html>
