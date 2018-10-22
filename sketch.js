@@ -133,7 +133,8 @@ function scrollDesktop() {
 // Get the data and process it by material
 function getInfo(){
 
-d3.json("https://media.githubusercontent.com/media/3milychu/majorstudio/master/data/materials/top8.json", function(data) {
+d3.json("https://raw.githubusercontent.com/3milychu/met-erials/master/data/top8_compressed.json", function(data) {
+			data = lzwCompress.unpack(data);
 	  		showTile();
 	  		data.forEach(function(d) {
 	   			d.objectBeginDate = +d.objectBeginDate;
@@ -1697,4 +1698,5 @@ function origins(dataset) {
 //end getInfo function
 	};
 
+console.clear();
 

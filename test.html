@@ -42,9 +42,9 @@ function decompress() {
 	xttp.send();
 	xttp.onreadystatechange= function() {
 		if(this.readyState == 4 && this.status == 200){
-			var data = JSON.parse(this.responseText);
-			original = lzwCompress.unpack(data);
-			console.log(original);
+			var compressed = JSON.parse(this.responseText);
+			data = lzwCompress.unpack(compressed);
+			console.log(data);
 		}
 	}
 }

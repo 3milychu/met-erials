@@ -1182,6 +1182,9 @@ text.label{
         .up-arrow{
             margin-top:-50%;
         }
+        .main {
+            margin-top:25%;
+        }
     }
 
     @media screen and (max-width:480px) {
